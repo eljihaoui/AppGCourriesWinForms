@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBGCourriesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arrivee">
+          <Key>
+            <PropertyRef Name="idArrivee" />
+          </Key>
+          <Property Name="idArrivee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCateg" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idEntite" Type="int" Nullable="false" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+          <Property Name="NumOrdre" Type="int" Nullable="false" />
+          <Property Name="DateOrdre" Type="datetime" Nullable="false" />
+          <Property Name="NumCourrier" Type="varchar" MaxLength="50" />
+          <Property Name="DateCourrier" Type="datetime" />
+          <Property Name="Sujet" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Remarques" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ArriveeDocs">
+          <Key>
+            <PropertyRef Name="idArriveeDocs" />
+          </Key>
+          <Property Name="idArriveeDocs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArrivee" Type="int" Nullable="false" />
+          <Property Name="TypeDocArrivee" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContenuFileArrivee" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="idCateg" />
+          </Key>
+          <Property Name="idCateg" Type="int" Nullable="false" />
+          <Property Name="LibCateg" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Depart">
+          <Key>
+            <PropertyRef Name="idDepart" />
+          </Key>
+          <Property Name="idDepart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCateg" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+          <Property Name="NumOrdre" Type="int" Nullable="false" />
+          <Property Name="DateOrdre" Type="datetime" Nullable="false" />
+          <Property Name="Sujet" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ramarques" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DepartDocs">
+          <Key>
+            <PropertyRef Name="idDocDepart" />
+          </Key>
+          <Property Name="idDocDepart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDepart" Type="int" Nullable="false" />
+          <Property Name="TypeDocDepart" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContenuFileDepart" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destiner">
+          <Key>
+            <PropertyRef Name="IdDepart" />
+            <PropertyRef Name="idEntute" />
+          </Key>
+          <Property Name="IdDepart" Type="int" Nullable="false" />
+          <Property Name="idEntute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entites">
+          <Key>
+            <PropertyRef Name="idEntite" />
+          </Key>
+          <Property Name="idEntite" Type="int" Nullable="false" />
+          <Property Name="LibEntite" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TUsers">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Passe" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NomUser" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ARRIVEE_AVOIR_CATEGORI">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCateg" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idCateg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEE_ENVOYER_ENTITES">
+          <End Role="Entites" Type="Self.Entites" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entites">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEE_SAISIR_TUSERS">
+          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsers">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEED_AVOIR_PJ_ARRIVEE">
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="1" />
+          <End Role="ArriveeDocs" Type="Self.ArriveeDocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrivee">
+              <PropertyRef Name="idArrivee" />
+            </Principal>
+            <Dependent Role="ArriveeDocs">
+              <PropertyRef Name="idArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPART_CLASSER_CATEGORI">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCateg" />
+            </Principal>
+            <Dependent Role="Depart">
+              <PropertyRef Name="idCateg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPART_ENREGISTR_TUSERS">
+          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
+          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsers">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Depart">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPARTDO_AVOIR_DOC_DEPART">
+          <End Role="Depart" Type="Self.Depart" Multiplicity="1" />
+          <End Role="DepartDocs" Type="Self.DepartDocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart">
+              <PropertyRef Name="idDepart" />
+            </Principal>
+            <Dependent Role="DepartDocs">
+              <PropertyRef Name="idDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DESTINER_DESTINER_ENTITES">
+          <End Role="Entites" Type="Self.Entites" Multiplicity="1" />
+          <End Role="Destiner" Type="Self.Destiner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entites">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="Destiner">
+              <PropertyRef Name="idEntute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DESTINER_DESTINER2_DEPART">
+          <End Role="Depart" Type="Self.Depart" Multiplicity="1" />
+          <End Role="Destiner" Type="Self.Destiner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart">
+              <PropertyRef Name="idDepart" />
+            </Principal>
+            <Dependent Role="Destiner">
+              <PropertyRef Name="IdDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBGCourriesModelStoreContainer">
+          <EntitySet Name="Arrivee" EntityType="Self.Arrivee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArriveeDocs" EntityType="Self.ArriveeDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Depart" EntityType="Self.Depart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartDocs" EntityType="Self.DepartDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destiner" EntityType="Self.Destiner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entites" EntityType="Self.Entites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUsers" EntityType="Self.TUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ARRIVEE_AVOIR_CATEGORI" Association="Self.FK_ARRIVEE_AVOIR_CATEGORI">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEE_ENVOYER_ENTITES" Association="Self.FK_ARRIVEE_ENVOYER_ENTITES">
+            <End Role="Entites" EntitySet="Entites" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEE_SAISIR_TUSERS" Association="Self.FK_ARRIVEE_SAISIR_TUSERS">
+            <End Role="TUsers" EntitySet="TUsers" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEED_AVOIR_PJ_ARRIVEE" Association="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE">
+            <End Role="Arrivee" EntitySet="Arrivee" />
+            <End Role="ArriveeDocs" EntitySet="ArriveeDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPART_CLASSER_CATEGORI" Association="Self.FK_DEPART_CLASSER_CATEGORI">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Depart" EntitySet="Depart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPART_ENREGISTR_TUSERS" Association="Self.FK_DEPART_ENREGISTR_TUSERS">
+            <End Role="TUsers" EntitySet="TUsers" />
+            <End Role="Depart" EntitySet="Depart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPARTDO_AVOIR_DOC_DEPART" Association="Self.FK_DEPARTDO_AVOIR_DOC_DEPART">
+            <End Role="Depart" EntitySet="Depart" />
+            <End Role="DepartDocs" EntitySet="DepartDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DESTINER_DESTINER_ENTITES" Association="Self.FK_DESTINER_DESTINER_ENTITES">
+            <End Role="Entites" EntitySet="Entites" />
+            <End Role="Destiner" EntitySet="Destiner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DESTINER_DESTINER2_DEPART" Association="Self.FK_DESTINER_DESTINER2_DEPART">
+            <End Role="Depart" EntitySet="Depart" />
+            <End Role="Destiner" EntitySet="Destiner" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBGCourriesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arrivee">
+          <Key>
+            <PropertyRef Name="idArrivee" />
+          </Key>
+          <Property Name="idArrivee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCateg" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idEntite" Type="Int32" Nullable="false" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <Property Name="NumOrdre" Type="Int32" Nullable="false" />
+          <Property Name="DateOrdre" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumCourrier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCourrier" Type="DateTime" Precision="3" />
+          <Property Name="Sujet" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarques" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK_ARRIVEE_AVOIR_CATEGORI" FromRole="Arrivee" ToRole="Categorie" />
+          <NavigationProperty Name="Entites" Relationship="Self.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Arrivee" ToRole="Entites" />
+          <NavigationProperty Name="TUsers" Relationship="Self.FK_ARRIVEE_SAISIR_TUSERS" FromRole="Arrivee" ToRole="TUsers" />
+          <NavigationProperty Name="ArriveeDocs" Relationship="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE" FromRole="Arrivee" ToRole="ArriveeDocs" />
+        </EntityType>
+        <EntityType Name="ArriveeDocs">
+          <Key>
+            <PropertyRef Name="idArriveeDocs" />
+          </Key>
+          <Property Name="idArriveeDocs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArrivee" Type="Int32" Nullable="false" />
+          <Property Name="TypeDocArrivee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContenuFileArrivee" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE" FromRole="ArriveeDocs" ToRole="Arrivee" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="idCateg" />
+          </Key>
+          <Property Name="idCateg" Type="Int32" Nullable="false" />
+          <Property Name="LibCateg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEE_AVOIR_CATEGORI" FromRole="Categorie" ToRole="Arrivee" />
+          <NavigationProperty Name="Depart" Relationship="Self.FK_DEPART_CLASSER_CATEGORI" FromRole="Categorie" ToRole="Depart" />
+        </EntityType>
+        <EntityType Name="Depart">
+          <Key>
+            <PropertyRef Name="idDepart" />
+          </Key>
+          <Property Name="idDepart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCateg" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <Property Name="NumOrdre" Type="Int32" Nullable="false" />
+          <Property Name="DateOrdre" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sujet" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ramarques" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK_DEPART_CLASSER_CATEGORI" FromRole="Depart" ToRole="Categorie" />
+          <NavigationProperty Name="TUsers" Relationship="Self.FK_DEPART_ENREGISTR_TUSERS" FromRole="Depart" ToRole="TUsers" />
+          <NavigationProperty Name="DepartDocs" Relationship="Self.FK_DEPARTDO_AVOIR_DOC_DEPART" FromRole="Depart" ToRole="DepartDocs" />
+          <NavigationProperty Name="Entites" Relationship="Self.Destiner" FromRole="Depart" ToRole="Entites" />
+        </EntityType>
+        <EntityType Name="DepartDocs">
+          <Key>
+            <PropertyRef Name="idDocDepart" />
+          </Key>
+          <Property Name="idDocDepart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDepart" Type="Int32" Nullable="false" />
+          <Property Name="TypeDocDepart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContenuFileDepart" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Depart" Relationship="Self.FK_DEPARTDO_AVOIR_DOC_DEPART" FromRole="DepartDocs" ToRole="Depart" />
+        </EntityType>
+        <EntityType Name="Entites">
+          <Key>
+            <PropertyRef Name="idEntite" />
+          </Key>
+          <Property Name="idEntite" Type="Int32" Nullable="false" />
+          <Property Name="LibEntite" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Entites" ToRole="Arrivee" />
+          <NavigationProperty Name="Depart" Relationship="Self.Destiner" FromRole="Entites" ToRole="Depart" />
+        </EntityType>
+        <EntityType Name="TUsers">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passe" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEE_SAISIR_TUSERS" FromRole="TUsers" ToRole="Arrivee" />
+          <NavigationProperty Name="Depart" Relationship="Self.FK_DEPART_ENREGISTR_TUSERS" FromRole="TUsers" ToRole="Depart" />
+        </EntityType>
+        <Association Name="FK_ARRIVEE_AVOIR_CATEGORI">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCateg" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idCateg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEE_ENVOYER_ENTITES">
+          <End Role="Entites" Type="Self.Entites" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entites">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEE_SAISIR_TUSERS">
+          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsers">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARRIVEED_AVOIR_PJ_ARRIVEE">
+          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="1" />
+          <End Role="ArriveeDocs" Type="Self.ArriveeDocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrivee">
+              <PropertyRef Name="idArrivee" />
+            </Principal>
+            <Dependent Role="ArriveeDocs">
+              <PropertyRef Name="idArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPART_CLASSER_CATEGORI">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCateg" />
+            </Principal>
+            <Dependent Role="Depart">
+              <PropertyRef Name="idCateg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPART_ENREGISTR_TUSERS">
+          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
+          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsers">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Depart">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPARTDO_AVOIR_DOC_DEPART">
+          <End Role="Depart" Type="Self.Depart" Multiplicity="1" />
+          <End Role="DepartDocs" Type="Self.DepartDocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart">
+              <PropertyRef Name="idDepart" />
+            </Principal>
+            <Dependent Role="DepartDocs">
+              <PropertyRef Name="idDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Destiner">
+          <End Role="Entites" Type="Self.Entites" Multiplicity="*" />
+          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBGCourriesContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arrivee" EntityType="Self.Arrivee" />
+          <EntitySet Name="ArriveeDocs" EntityType="Self.ArriveeDocs" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+          <EntitySet Name="Depart" EntityType="Self.Depart" />
+          <EntitySet Name="DepartDocs" EntityType="Self.DepartDocs" />
+          <EntitySet Name="Entites" EntityType="Self.Entites" />
+          <EntitySet Name="TUsers" EntityType="Self.TUsers" />
+          <AssociationSet Name="FK_ARRIVEE_AVOIR_CATEGORI" Association="Self.FK_ARRIVEE_AVOIR_CATEGORI">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEE_ENVOYER_ENTITES" Association="Self.FK_ARRIVEE_ENVOYER_ENTITES">
+            <End Role="Entites" EntitySet="Entites" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEE_SAISIR_TUSERS" Association="Self.FK_ARRIVEE_SAISIR_TUSERS">
+            <End Role="TUsers" EntitySet="TUsers" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARRIVEED_AVOIR_PJ_ARRIVEE" Association="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE">
+            <End Role="Arrivee" EntitySet="Arrivee" />
+            <End Role="ArriveeDocs" EntitySet="ArriveeDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPART_CLASSER_CATEGORI" Association="Self.FK_DEPART_CLASSER_CATEGORI">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Depart" EntitySet="Depart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPART_ENREGISTR_TUSERS" Association="Self.FK_DEPART_ENREGISTR_TUSERS">
+            <End Role="TUsers" EntitySet="TUsers" />
+            <End Role="Depart" EntitySet="Depart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPARTDO_AVOIR_DOC_DEPART" Association="Self.FK_DEPARTDO_AVOIR_DOC_DEPART">
+            <End Role="Depart" EntitySet="Depart" />
+            <End Role="DepartDocs" EntitySet="DepartDocs" />
+          </AssociationSet>
+          <AssociationSet Name="Destiner" Association="Self.Destiner">
+            <End Role="Entites" EntitySet="Entites" />
+            <End Role="Depart" EntitySet="Depart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBGCourriesModelStoreContainer" CdmEntityContainer="DBGCourriesContext">
+          <EntitySetMapping Name="Arrivee">
+            <EntityTypeMapping TypeName="DBGCourriesModel.Arrivee">
+              <MappingFragment StoreEntitySet="Arrivee">
+                <ScalarProperty Name="idArrivee" ColumnName="idArrivee" />
+                <ScalarProperty Name="idCateg" ColumnName="idCateg" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="NumOrdre" ColumnName="NumOrdre" />
+                <ScalarProperty Name="DateOrdre" ColumnName="DateOrdre" />
+                <ScalarProperty Name="NumCourrier" ColumnName="NumCourrier" />
+                <ScalarProperty Name="DateCourrier" ColumnName="DateCourrier" />
+                <ScalarProperty Name="Sujet" ColumnName="Sujet" />
+                <ScalarProperty Name="Remarques" ColumnName="Remarques" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArriveeDocs">
+            <EntityTypeMapping TypeName="DBGCourriesModel.ArriveeDocs">
+              <MappingFragment StoreEntitySet="ArriveeDocs">
+                <ScalarProperty Name="idArriveeDocs" ColumnName="idArriveeDocs" />
+                <ScalarProperty Name="idArrivee" ColumnName="idArrivee" />
+                <ScalarProperty Name="TypeDocArrivee" ColumnName="TypeDocArrivee" />
+                <ScalarProperty Name="ContenuFileArrivee" ColumnName="ContenuFileArrivee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorie">
+            <EntityTypeMapping TypeName="DBGCourriesModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="idCateg" ColumnName="idCateg" />
+                <ScalarProperty Name="LibCateg" ColumnName="LibCateg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depart">
+            <EntityTypeMapping TypeName="DBGCourriesModel.Depart">
+              <MappingFragment StoreEntitySet="Depart">
+                <ScalarProperty Name="idDepart" ColumnName="idDepart" />
+                <ScalarProperty Name="idCateg" ColumnName="idCateg" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="NumOrdre" ColumnName="NumOrdre" />
+                <ScalarProperty Name="DateOrdre" ColumnName="DateOrdre" />
+                <ScalarProperty Name="Sujet" ColumnName="Sujet" />
+                <ScalarProperty Name="Ramarques" ColumnName="Ramarques" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartDocs">
+            <EntityTypeMapping TypeName="DBGCourriesModel.DepartDocs">
+              <MappingFragment StoreEntitySet="DepartDocs">
+                <ScalarProperty Name="idDocDepart" ColumnName="idDocDepart" />
+                <ScalarProperty Name="idDepart" ColumnName="idDepart" />
+                <ScalarProperty Name="TypeDocDepart" ColumnName="TypeDocDepart" />
+                <ScalarProperty Name="ContenuFileDepart" ColumnName="ContenuFileDepart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entites">
+            <EntityTypeMapping TypeName="DBGCourriesModel.Entites">
+              <MappingFragment StoreEntitySet="Entites">
+                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+                <ScalarProperty Name="LibEntite" ColumnName="LibEntite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUsers">
+            <EntityTypeMapping TypeName="DBGCourriesModel.TUsers">
+              <MappingFragment StoreEntitySet="TUsers">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Passe" ColumnName="Passe" />
+                <ScalarProperty Name="NomUser" ColumnName="NomUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Destiner" TypeName="DBGCourriesModel.Destiner" StoreEntitySet="Destiner">
+            <EndProperty Name="Entites">
+              <ScalarProperty Name="idEntite" ColumnName="idEntute" />
+            </EndProperty>
+            <EndProperty Name="Depart">
+              <ScalarProperty Name="idDepart" ColumnName="IdDepart" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
