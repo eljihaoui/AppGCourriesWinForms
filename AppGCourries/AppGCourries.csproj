@@ -58,11 +58,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmArriveeAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmArriveeAdd.Designer.cs">
+      <DependentUpon>frmArriveeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListArrivee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListArrivee.Designer.cs">
+      <DependentUpon>ListArrivee.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -108,8 +114,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmArriveeAdd.resx">
+      <DependentUpon>frmArriveeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListArrivee.resx">
+      <DependentUpon>ListArrivee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -145,6 +154,76 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ICONES GC\icons8_account_40px.png" />
+    <Content Include="ICONES GC\icons8_add_24px.png" />
+    <Content Include="ICONES GC\icons8_add_24px_1.png" />
+    <Content Include="ICONES GC\icons8_add_24px_2.png" />
+    <Content Include="ICONES GC\icons8_add_file_24px.png" />
+    <Content Include="ICONES GC\icons8_add_file_24px_1.png" />
+    <Content Include="ICONES GC\icons8_add_new_24px.png" />
+    <Content Include="ICONES GC\icons8_add_user_male_24px.png" />
+    <Content Include="ICONES GC\icons8_add_user_male_24px_1.png" />
+    <Content Include="ICONES GC\icons8_bar_chart_40px.png" />
+    <Content Include="ICONES GC\icons8_checked_radio_button_40px.png" />
+    <Content Include="ICONES GC\icons8_check_file_40px.png" />
+    <Content Include="ICONES GC\icons8_close_window_50px.png" />
+    <Content Include="ICONES GC\icons8_close_window_50px_1.png" />
+    <Content Include="ICONES GC\icons8_course_40px.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_1.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_2.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_3.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_4.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_6.png" />
+    <Content Include="ICONES GC\icons8_course_assign_100px_7.png" />
+    <Content Include="ICONES GC\icons8_course_assign_40px.png" />
+    <Content Include="ICONES GC\icons8_course_assign_40px_1.png" />
+    <Content Include="ICONES GC\icons8_course_assign_40px_2.png" />
+    <Content Include="ICONES GC\icons8_course_assign_40px_3.png" />
+    <Content Include="ICONES GC\icons8_course_assign_40px_4.png" />
+    <Content Include="ICONES GC\icons8_data_quality_40px.png" />
+    <Content Include="ICONES GC\icons8_delete_24px.png" />
+    <Content Include="ICONES GC\icons8_delete_bin_24px.png" />
+    <Content Include="ICONES GC\icons8_delete_file_24px.png" />
+    <Content Include="ICONES GC\icons8_delete_pie_chart_report_24px.png" />
+    <Content Include="ICONES GC\icons8_delete_trash_24px.png" />
+    <Content Include="ICONES GC\icons8_downloads_folder_100px.png" />
+    <Content Include="ICONES GC\icons8_exit_40px.png" />
+    <Content Include="ICONES GC\icons8_external_40px.png" />
+    <Content Include="ICONES GC\icons8_external_40px_1.png" />
+    <Content Include="ICONES GC\icons8_google_docs_40px.png" />
+    <Content Include="ICONES GC\icons8_increase_40px.png" />
+    <Content Include="ICONES GC\icons8_mailing_100px.png" />
+    <Content Include="ICONES GC\icons8_new_document_100px.png" />
+    <Content Include="ICONES GC\icons8_output_40px.png" />
+    <Content Include="ICONES GC\icons8_renew_24px.png" />
+    <Content Include="ICONES GC\icons8_rescan_document_100px.png" />
+    <Content Include="ICONES GC\icons8_restart_24px.png" />
+    <Content Include="ICONES GC\icons8_save_all_24px.png" />
+    <Content Include="ICONES GC\icons8_save_as_24px.png" />
+    <Content Include="ICONES GC\icons8_save_close_24px.png" />
+    <Content Include="ICONES GC\logo\Fichier 5%400.5.png" />
+    <Content Include="ICONES GC\logo\Fichier 5%403x.png" />
+    <Content Include="ICONES GC\logo\Fichier 51X.png" />
+    <Content Include="ICONES GC\logo\Fichier 7%401.5x.png" />
+    <Content Include="ICONES GC\logo\Fichier 7%404x.png" />
+    <Content Include="ICONES GC\logo\Fichier 8%400.5.png" />
+    <Content Include="ICONES GC\logo\Fichier 8%401.5x.png" />
+    <Content Include="ICONES GC\logo\Fichier 8%402x.png" />
+    <Content Include="ICONES GC\logo\Fichier 8%403x.png" />
+    <Content Include="ICONES GC\logo\Fichier 8%404x.png" />
+    <Content Include="ICONES GC\logo\Fichier 81X.png" />
+    <Content Include="ICONES GC\used\add.png" />
+    <Content Include="ICONES GC\used\arrivée.png" />
+    <Content Include="ICONES GC\used\close.png" />
+    <Content Include="ICONES GC\used\color.txt" />
+    <Content Include="ICONES GC\used\depart.png" />
+    <Content Include="ICONES GC\used\logo.png" />
+    <Content Include="ICONES GC\used\quitter.png" />
+    <Content Include="ICONES GC\used\save.png" />
+    <Content Include="ICONES GC\used\statistiques.png" />
+    <Content Include="ICONES GC\used\suivi.png" />
+    <Content Include="ICONES GC\used\supp.png" />
     <Content Include="Models\GCourriesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GCourriesModel.Context.cs</LastGenOutput>
