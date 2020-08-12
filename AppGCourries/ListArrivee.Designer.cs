@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListArrivee));
             this.dataGridArrivee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,10 +44,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridArrivee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridArrivee.Location = new System.Drawing.Point(4, 37);
             this.dataGridArrivee.Name = "dataGridArrivee";
             this.dataGridArrivee.Size = new System.Drawing.Size(890, 276);
             this.dataGridArrivee.TabIndex = 0;
+            this.dataGridArrivee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellClick);
+            this.dataGridArrivee.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellContentDoubleClick);
             // 
             // label1
             // 
