@@ -257,7 +257,7 @@
             this.Name = "frmArriveeEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmArriveeAdd";
-            this.Load += new System.EventHandler(this.frmArriveeAdd_Load);
+            this.Load += new System.EventHandler(this.frmArriveeEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -57,7 +57,9 @@
             this.dataGridArrivee.Size = new System.Drawing.Size(890, 276);
             this.dataGridArrivee.TabIndex = 0;
             this.dataGridArrivee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellClick);
+            this.dataGridArrivee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellContentClick);
             this.dataGridArrivee.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellContentDoubleClick);
+            this.dataGridArrivee.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArrivee_CellMouseEnter);
             // 
             // label1
             // 

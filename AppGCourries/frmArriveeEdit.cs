@@ -66,32 +66,31 @@ namespace AppGCourries
             }
         }
 
-        private void frmArriveeAdd_Load(object sender, EventArgs e)
+        private void frmArriveeEdit_Load(object sender, EventArgs e)
         {
-            using( DBGCourriesContext db = new DBGCourriesContext()) {
-
-                txtCateg.DataSource = db.Categorie.ToList();
-                txtCateg.ValueMember = "idCateg";
-                txtCateg.DisplayMember = "LibCateg";
-                txtEntite.DataSource = db.Entites.ToList();
-                txtEntite.ValueMember = "idEntite";
-                txtEntite.DisplayMember = "LibEntite";
-                if (this.idArrivee != 0)
+                using (DBGCourriesContext db = new DBGCourriesContext())
                 {
-                    Arrivee arr = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
-                    txtDateOrdre.Value = arr.DateOrdre.Date;
-                    txtNumCourrier.Text = arr.NumCourrier;
-                    txtDateCourrier.Value = arr.DateCourrier.Value.Date;
-                    txtSujet.Text = arr.Sujet;
-                    txtRemarque.Text = arr.Remarques;
-                    txtCateg.SelectedItem = arr.Categorie;
-                    txtEntite.SelectedItem = arr.Entites;
-                    txtTitre.Text = "Edtion Courrier N° : " + arr.NumOrdre;
+
+                    txtCateg.DataSource = db.Categorie.ToList();
+                    txtCateg.ValueMember = "idCateg";
+                    txtCateg.DisplayMember = "LibCateg";
+                    txtEntite.DataSource = db.Entites.ToList();
+                    txtEntite.ValueMember = "idEntite";
+                    txtEntite.DisplayMember = "LibEntite";
+                    if (this.idArrivee != 0)
+                    {
+                        Arrivee arr = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
+                        txtDateOrdre.Value = arr.DateOrdre.Date;
+                        txtNumCourrier.Text = arr.NumCourrier;
+                        txtDateCourrier.Value = arr.DateCourrier.Value.Date;
+                        txtSujet.Text = arr.Sujet;
+                        txtRemarque.Text = arr.Remarques;
+                        txtCateg.SelectedItem = arr.Categorie;
+                        txtEntite.SelectedItem = arr.Entites;
+                        txtTitre.Text = "Edtion Courrier N° : " + arr.NumOrdre;
+                    }
                 }
-                
-            }
-
-
+            
         }
     }
 }

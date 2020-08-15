@@ -140,6 +140,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="Models\GCourriesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -243,6 +244,9 @@
       <DependentUpon>GCourriesModel.edmx</DependentUpon>
       <LastGenOutput>GCourriesModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\edit1.png" />
+    <None Include="Resources\delete1.png" />
+    <None Include="Resources\edit2.png" />
     <Content Include="ScriptDB\DB_GCourries.sql" />
     <Content Include="ScriptDB\MCD.png" />
   </ItemGroup>

@@ -35,14 +35,29 @@ namespace AppGCourries
                         p.Sujet
                     }).ToList();
             }
-            dataGridArrivee.AutoResizeColumns();
+            dataGridArrivee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridArrivee.AllowUserToResizeColumns = true;
             dataGridArrivee.AllowUserToOrderColumns = true;
             dataGridArrivee.Columns["ID"].Visible = false;
+
+
         }
         private void ListArrivee_Load(object sender, EventArgs e)
         {
             loadData();
+            DataGridViewImageColumn btnEdit = new DataGridViewImageColumn();
+            btnEdit.Name = "btnEdit";
+            btnEdit.HeaderText = "";
+            btnEdit.Image = Properties.Resources.edit2;
+            dataGridArrivee.Columns.Add(btnEdit);
+            //-----------------------------------------
+            DataGridViewImageColumn btnDelete = new DataGridViewImageColumn();
+            btnDelete.Name = "btnDelete";
+            btnDelete.HeaderText = "";
+            btnDelete.Image = Properties.Resources.delete1;
+            dataGridArrivee.Columns.Add(btnDelete);
+            //-----------------------------------------
+            dataGridArrivee.RowTemplate.Height = 30;
         }
 
         private void btnNouveau_Click(object sender, EventArgs e)
@@ -51,15 +66,6 @@ namespace AppGCourries
             frm.ShowDialog();
         }
 
-        private void dataGridArrivee_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-
-        {
-
-            int row = e.RowIndex;
-            if (row > 0)
-                this.dataGridArrivee.Rows[row].Selected = true;
-
-        }
 
         private void dataGridArrivee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -73,7 +79,7 @@ namespace AppGCourries
 
 
 
-      
+
 
         private void dataGridArrivee_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -86,6 +92,53 @@ namespace AppGCourries
                 frmArriveeEdit frmEdit = new frmArriveeEdit(idArrivee, this);
                 frmEdit.ShowDialog();
 
+            }
+        }
+
+       
+
+        private void dataGridArrivee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
+            DataGridViewRow row = dataGridArrivee.Rows[e.RowIndex];
+            row.Selected = true;
+            int idArriveeCur = Convert.ToInt32(row.Cells["ID"].Value);
+            string sujet = row.Cells["Sujet"].Value.ToString();
+            if (ColName == "btnEdit")
+            {
+                dataGridArrivee_CellContentDoubleClick(sender, e);
+            }
+
+            if (ColName == "btnDelete")
+            {
+                DialogResult dr = MessageBox.Show("Voulez Vous vraiment supprimer ce courrier " + sujet,
+                    "Confirmation de suppression ",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                    );
+                if (dr == DialogResult.Yes)
+                {
+                    using (DBGCourriesContext db = new DBGCourriesContext())
+                    {
+                        Arrivee ar = db.Arrivee.FirstOrDefault(x => x.idArrivee == idArriveeCur);
+                        db.Arrivee.Remove(ar);
+                        db.SaveChanges();
+                        loadData();
+                    }
+                }
+            }
+        }
+
+        private void dataGridArrivee_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
+            if (ColName != "btnEdit" && ColName != "btnDelete")
+            {
+                dataGridArrivee.Cursor = Cursors.Default;
+            }
+            else
+            {
+                dataGridArrivee.Cursor = Cursors.Hand;
             }
         }
     }
