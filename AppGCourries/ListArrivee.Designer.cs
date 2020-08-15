@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListArrivee));
             this.dataGridArrivee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNouveau = new System.Windows.Forms.Button();
+            this.txtCritere = new System.Windows.Forms.TextBox();
+            this.txtDateDeb = new System.Windows.Forms.DateTimePicker();
+            this.txtDateFin = new System.Windows.Forms.DateTimePicker();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.useDate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArrivee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -44,14 +49,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridArrivee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridArrivee.Location = new System.Drawing.Point(4, 37);
             this.dataGridArrivee.Name = "dataGridArrivee";
             this.dataGridArrivee.Size = new System.Drawing.Size(890, 276);
@@ -98,10 +103,61 @@
             this.btnNouveau.UseVisualStyleBackColor = false;
             this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
+            // txtCritere
+            // 
+            this.txtCritere.Location = new System.Drawing.Point(271, 7);
+            this.txtCritere.Name = "txtCritere";
+            this.txtCritere.Size = new System.Drawing.Size(145, 26);
+            this.txtCritere.TabIndex = 4;
+            // 
+            // txtDateDeb
+            // 
+            this.txtDateDeb.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDateDeb.Location = new System.Drawing.Point(507, 7);
+            this.txtDateDeb.Name = "txtDateDeb";
+            this.txtDateDeb.Size = new System.Drawing.Size(110, 26);
+            this.txtDateDeb.TabIndex = 5;
+            // 
+            // txtDateFin
+            // 
+            this.txtDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDateFin.Location = new System.Drawing.Point(623, 7);
+            this.txtDateFin.Name = "txtDateFin";
+            this.txtDateFin.Size = new System.Drawing.Size(116, 26);
+            this.txtDateFin.TabIndex = 6;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(743, 7);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(32, 27);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // useDate
+            // 
+            this.useDate.AutoSize = true;
+            this.useDate.Location = new System.Drawing.Point(422, 7);
+            this.useDate.Name = "useDate";
+            this.useDate.Size = new System.Drawing.Size(64, 24);
+            this.useDate.TabIndex = 8;
+            this.useDate.Text = "Date";
+            this.useDate.UseVisualStyleBackColor = true;
+            // 
             // ListArrivee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.useDate);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtDateFin);
+            this.Controls.Add(this.txtDateDeb);
+            this.Controls.Add(this.txtCritere);
             this.Controls.Add(this.btnNouveau);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -124,5 +180,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnNouveau;
+        private System.Windows.Forms.TextBox txtCritere;
+        private System.Windows.Forms.DateTimePicker txtDateDeb;
+        private System.Windows.Forms.DateTimePicker txtDateFin;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox useDate;
     }
 }

@@ -21,7 +21,8 @@ namespace AppGCourries
         {
             using (DBGCourriesContext db = new DBGCourriesContext())
             {
-                dataGridArrivee.DataSource = db.Arrivee.Select(
+
+                var list = db.Arrivee.Select(
                     p => new
                     {
                         ID = p.idArrivee,
@@ -34,13 +35,23 @@ namespace AppGCourries
                         p.NumCourrier,
                         p.Sujet
                     }).ToList();
+
+                if (!String.IsNullOrEmpty(txtCritere.Text))
+                {
+                    list = list.Where(x => x.Sujet.ToLower().Contains(txtCritere.Text.ToLower())).ToList();
+                }
+
+                if (useDate.Checked)
+                {
+                    list = list.Where
+                        (x => x.DateOrdre >= txtDateDeb.Value.Date && x.DateOrdre <= txtDateFin.Value.Date).ToList();
+                }
+                dataGridArrivee.DataSource = list;
             }
             dataGridArrivee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridArrivee.AllowUserToResizeColumns = true;
             dataGridArrivee.AllowUserToOrderColumns = true;
             dataGridArrivee.Columns["ID"].Visible = false;
-
-
         }
         private void ListArrivee_Load(object sender, EventArgs e)
         {
@@ -95,7 +106,7 @@ namespace AppGCourries
             }
         }
 
-       
+
 
         private void dataGridArrivee_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -140,6 +151,11 @@ namespace AppGCourries
             {
                 dataGridArrivee.Cursor = Cursors.Hand;
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            loadData();
         }
     }
 }
