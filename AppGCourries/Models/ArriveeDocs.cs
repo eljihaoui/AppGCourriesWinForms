@@ -18,6 +18,7 @@ namespace AppGCourries.Models
         public int idArrivee { get; set; }
         public string TypeDocArrivee { get; set; }
         public byte[] ContenuFileArrivee { get; set; }
+        public string FileName { get; set; }
     
         public virtual Arrivee Arrivee { get; set; }
     }

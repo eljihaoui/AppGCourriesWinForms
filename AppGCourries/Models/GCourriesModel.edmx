@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBGCourriesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBGCourriesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Arrivee">
           <Key>
             <PropertyRef Name="idArrivee" />
@@ -29,6 +29,7 @@
           <Property Name="idArrivee" Type="int" Nullable="false" />
           <Property Name="TypeDocArrivee" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ContenuFileArrivee" Type="varbinary(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -58,6 +59,7 @@
           <Property Name="idDepart" Type="int" Nullable="false" />
           <Property Name="TypeDocDepart" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ContenuFileDepart" Type="varbinary(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Destiner">
           <Key>
@@ -237,8 +239,7 @@
             <End Role="Destiner" EntitySet="Destiner" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBGCourriesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -271,6 +272,7 @@
           <Property Name="TypeDocArrivee" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContenuFileArrivee" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE" FromRole="ArriveeDocs" ToRole="Arrivee" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -307,6 +309,7 @@
           <Property Name="TypeDocDepart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContenuFileDepart" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Depart" Relationship="Self.FK_DEPARTDO_AVOIR_DOC_DEPART" FromRole="DepartDocs" ToRole="Depart" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Entites">
           <Key>
@@ -483,6 +486,7 @@
           <EntitySetMapping Name="ArriveeDocs">
             <EntityTypeMapping TypeName="DBGCourriesModel.ArriveeDocs">
               <MappingFragment StoreEntitySet="ArriveeDocs">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="idArriveeDocs" ColumnName="idArriveeDocs" />
                 <ScalarProperty Name="idArrivee" ColumnName="idArrivee" />
                 <ScalarProperty Name="TypeDocArrivee" ColumnName="TypeDocArrivee" />
@@ -515,6 +519,7 @@
           <EntitySetMapping Name="DepartDocs">
             <EntityTypeMapping TypeName="DBGCourriesModel.DepartDocs">
               <MappingFragment StoreEntitySet="DepartDocs">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="idDocDepart" ColumnName="idDocDepart" />
                 <ScalarProperty Name="idDepart" ColumnName="idDepart" />
                 <ScalarProperty Name="TypeDocDepart" ColumnName="TypeDocDepart" />

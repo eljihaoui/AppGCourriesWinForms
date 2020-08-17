@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,17 @@ namespace AppGCourries
             this.Close();
         }
 
+        // Convert file to binary data
+        public byte[] GetBinaryFromFile(string file)
+        {
+            byte[] bytes;
+            using (FileStream fs = new FileStream(file,FileMode.Open,FileAccess.Read))
+            {
+                bytes = new byte[fs.Length];
+                fs.Read(bytes, 0, (int)fs.Length);
+            }
+            return bytes;
+        }
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
            using(DBGCourriesContext db = new DBGCourriesContext())
@@ -48,6 +60,18 @@ namespace AppGCourries
                 ar.idUser = 1;
                 db.Arrivee.Add(ar);
                 db.SaveChanges();
+
+                ArriveeDocs arDocs = new ArriveeDocs();
+                arDocs.idArrivee = ar.idArrivee;
+                foreach (ListViewItem item in txtPJointes.Items)
+                {
+                    FileInfo f = new FileInfo(item.SubItems[0].Text);//non du fichier 
+                    arDocs.TypeDocArrivee = f.Extension;
+                    arDocs.FileName = item.SubItems[0].Text;
+                    arDocs.ContenuFileArrivee = GetBinaryFromFile(item.SubItems[1].Text);
+                    db.ArriveeDocs.Add(arDocs);
+                    db.SaveChanges();
+                }
                 this.Close();
                 frmList.loadData();
 
@@ -68,6 +92,31 @@ namespace AppGCourries
                 txtEntite.DisplayMember = "LibEntite";
 
             }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Documents Files |*.docx;*.xlsx;*.pdf|"
+                         + "Images |*.png;*.jpg;*.gif|"
+                         + "All files |*.*";
+            ofd.Multiselect = true;
+            ofd.Title = "Sélectionner les fichiers à importer ....";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                txtPJointes.Columns.Add("Fichier");
+                txtPJointes.Columns.Add("Chemin Complet");
+                foreach (string fichier in ofd.FileNames)
+                {
+                    FileInfo f = new FileInfo(fichier);
+                    ListViewItem item = new ListViewItem(f.Name);
+                    item.SubItems.Add(f.FullName);
+                    txtPJointes.Items.Add(item);
+                }
+                txtPJointes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            }
+
         }
     }
 }

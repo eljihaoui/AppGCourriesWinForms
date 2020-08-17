@@ -37,27 +37,31 @@
             this.txtDateOrdre = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDateCourrier = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtSujet = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtCateg = new System.Windows.Forms.ComboBox();
-            this.txtEntite = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtRemarque = new System.Windows.Forms.TextBox();
+            this.txtEntite = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCateg = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSujet = new System.Windows.Forms.TextBox();
+            this.txtDateCourrier = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnEnregistrer = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtPJointes = new System.Windows.Forms.ListView();
+            this.btnUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnQuitter
             // 
             this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQuitter.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitter.Image")));
-            this.btnQuitter.Location = new System.Drawing.Point(543, 1);
+            this.btnQuitter.Location = new System.Drawing.Point(858, 5);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(34, 28);
             this.btnQuitter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -140,56 +144,22 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             // 
-            // txtDateCourrier
+            // label8
             // 
-            this.txtDateCourrier.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtDateCourrier.Location = new System.Drawing.Point(11, 156);
-            this.txtDateCourrier.Name = "txtDateCourrier";
-            this.txtDateCourrier.Size = new System.Drawing.Size(225, 26);
-            this.txtDateCourrier.TabIndex = 10;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(295, 197);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 20);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Remarques :";
             // 
-            // label4
+            // txtRemarque
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 133);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Date Courrier :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 197);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 20);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Sujet : ";
-            // 
-            // txtSujet
-            // 
-            this.txtSujet.Location = new System.Drawing.Point(11, 222);
-            this.txtSujet.Multiline = true;
-            this.txtSujet.Name = "txtSujet";
-            this.txtSujet.Size = new System.Drawing.Size(225, 73);
-            this.txtSujet.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(291, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 20);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Catégorie :";
-            // 
-            // txtCateg
-            // 
-            this.txtCateg.FormattingEnabled = true;
-            this.txtCateg.Location = new System.Drawing.Point(295, 92);
-            this.txtCateg.Name = "txtCateg";
-            this.txtCateg.Size = new System.Drawing.Size(250, 28);
-            this.txtCateg.TabIndex = 14;
+            this.txtRemarque.Location = new System.Drawing.Point(295, 222);
+            this.txtRemarque.Multiline = true;
+            this.txtRemarque.Name = "txtRemarque";
+            this.txtRemarque.Size = new System.Drawing.Size(250, 73);
+            this.txtRemarque.TabIndex = 17;
             // 
             // txtEntite
             // 
@@ -208,22 +178,56 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "Entité :";
             // 
-            // label8
+            // txtCateg
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(295, 197);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 20);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Remarques :";
+            this.txtCateg.FormattingEnabled = true;
+            this.txtCateg.Location = new System.Drawing.Point(295, 92);
+            this.txtCateg.Name = "txtCateg";
+            this.txtCateg.Size = new System.Drawing.Size(250, 28);
+            this.txtCateg.TabIndex = 14;
             // 
-            // txtRemarque
+            // label6
             // 
-            this.txtRemarque.Location = new System.Drawing.Point(295, 222);
-            this.txtRemarque.Multiline = true;
-            this.txtRemarque.Name = "txtRemarque";
-            this.txtRemarque.Size = new System.Drawing.Size(250, 73);
-            this.txtRemarque.TabIndex = 17;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(291, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 20);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Catégorie :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 197);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Sujet : ";
+            // 
+            // txtSujet
+            // 
+            this.txtSujet.Location = new System.Drawing.Point(11, 222);
+            this.txtSujet.Multiline = true;
+            this.txtSujet.Name = "txtSujet";
+            this.txtSujet.Size = new System.Drawing.Size(225, 73);
+            this.txtSujet.TabIndex = 11;
+            // 
+            // txtDateCourrier
+            // 
+            this.txtDateCourrier.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDateCourrier.Location = new System.Drawing.Point(11, 156);
+            this.txtDateCourrier.Name = "txtDateCourrier";
+            this.txtDateCourrier.Size = new System.Drawing.Size(225, 26);
+            this.txtDateCourrier.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Date Courrier :";
             // 
             // btnEnregistrer
             // 
@@ -233,19 +237,56 @@
             this.btnEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnregistrer.Image = ((System.Drawing.Image)(resources.GetObject("btnEnregistrer.Image")));
             this.btnEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnregistrer.Location = new System.Drawing.Point(208, 362);
+            this.btnEnregistrer.Location = new System.Drawing.Point(198, 357);
             this.btnEnregistrer.Name = "btnEnregistrer";
-            this.btnEnregistrer.Size = new System.Drawing.Size(157, 33);
+            this.btnEnregistrer.Size = new System.Drawing.Size(157, 40);
             this.btnEnregistrer.TabIndex = 10;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.UseVisualStyleBackColor = false;
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtPJointes);
+            this.groupBox2.Location = new System.Drawing.Point(593, 38);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(299, 308);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            // 
+            // txtPJointes
+            // 
+            this.txtPJointes.HideSelection = false;
+            this.txtPJointes.Location = new System.Drawing.Point(6, 13);
+            this.txtPJointes.Name = "txtPJointes";
+            this.txtPJointes.Size = new System.Drawing.Size(287, 282);
+            this.txtPJointes.TabIndex = 0;
+            this.txtPJointes.UseCompatibleStateImageBehavior = false;
+            this.txtPJointes.View = System.Windows.Forms.View.Details;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.FlatAppearance.BorderSize = 0;
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
+            this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpload.Location = new System.Drawing.Point(599, 357);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(187, 40);
+            this.btnUpload.TabIndex = 12;
+            this.btnUpload.Text = "Parcourir...";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // frmArriveeAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 407);
+            this.ClientSize = new System.Drawing.Size(904, 407);
+            this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEnregistrer);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -262,6 +303,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +330,8 @@
         private System.Windows.Forms.ComboBox txtCateg;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEnregistrer;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView txtPJointes;
+        private System.Windows.Forms.Button btnUpload;
     }
 }

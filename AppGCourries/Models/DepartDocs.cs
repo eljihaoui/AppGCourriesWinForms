@@ -18,6 +18,7 @@ namespace AppGCourries.Models
         public int idDepart { get; set; }
         public string TypeDocDepart { get; set; }
         public byte[] ContenuFileDepart { get; set; }
+        public string FileName { get; set; }
     
         public virtual Depart Depart { get; set; }
     }
