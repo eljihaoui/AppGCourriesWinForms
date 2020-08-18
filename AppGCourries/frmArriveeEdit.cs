@@ -41,26 +41,26 @@ namespace AppGCourries
 
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
-           using(DBGCourriesContext db = new DBGCourriesContext())
+            using (DBGCourriesContext db = new DBGCourriesContext())
             {
                 if (this.idArrivee != 0)
                 {
-                Arrivee ar = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
-                ar.NumCourrier = txtNumCourrier.Text;
-                ar.Sujet = txtSujet.Text;
-                ar.Remarques = txtRemarque.Text;
-                ar.DateCourrier = txtDateCourrier.Value.Date;
-                ar.DateOrdre = txtDateOrdre.Value.Date;
-                ar.Annee = txtDateOrdre.Value.Date.Year;
-                ar.idCateg = Convert.ToInt32(txtCateg.SelectedValue);
-                ar.idEntite = Convert.ToInt32(txtEntite.SelectedValue);
-                ar.idUser = 1;
-                db.SaveChanges();
+                    Arrivee ar = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
+                    ar.NumCourrier = txtNumCourrier.Text;
+                    ar.Sujet = txtSujet.Text;
+                    ar.Remarques = txtRemarque.Text;
+                    ar.DateCourrier = txtDateCourrier.Value.Date;
+                    ar.DateOrdre = txtDateOrdre.Value.Date;
+                    ar.Annee = txtDateOrdre.Value.Date.Year;
+                    ar.idCateg = Convert.ToInt32(txtCateg.SelectedValue);
+                    ar.idEntite = Convert.ToInt32(txtEntite.SelectedValue);
+                    ar.idUser = 1;
+                    db.SaveChanges();
 
-                this.Close();
-                frmList.loadData();
+                    this.Close();
+                    frmList.loadData();
                 }
-   
+
 
 
             }
@@ -68,29 +68,57 @@ namespace AppGCourries
 
         private void frmArriveeEdit_Load(object sender, EventArgs e)
         {
-                using (DBGCourriesContext db = new DBGCourriesContext())
-                {
+            using (DBGCourriesContext db = new DBGCourriesContext())
+            {
 
-                    txtCateg.DataSource = db.Categorie.ToList();
-                    txtCateg.ValueMember = "idCateg";
-                    txtCateg.DisplayMember = "LibCateg";
-                    txtEntite.DataSource = db.Entites.ToList();
-                    txtEntite.ValueMember = "idEntite";
-                    txtEntite.DisplayMember = "LibEntite";
-                    if (this.idArrivee != 0)
-                    {
-                        Arrivee arr = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
-                        txtDateOrdre.Value = arr.DateOrdre.Date;
-                        txtNumCourrier.Text = arr.NumCourrier;
-                        txtDateCourrier.Value = arr.DateCourrier.Value.Date;
-                        txtSujet.Text = arr.Sujet;
-                        txtRemarque.Text = arr.Remarques;
-                        txtCateg.SelectedItem = arr.Categorie;
-                        txtEntite.SelectedItem = arr.Entites;
-                        txtTitre.Text = "Edtion Courrier N° : " + arr.NumOrdre;
-                    }
+                txtCateg.DataSource = db.Categorie.ToList();
+                txtCateg.ValueMember = "idCateg";
+                txtCateg.DisplayMember = "LibCateg";
+                txtEntite.DataSource = db.Entites.ToList();
+                txtEntite.ValueMember = "idEntite";
+                txtEntite.DisplayMember = "LibEntite";
+                if (this.idArrivee != 0)
+                {
+                    Arrivee arr = db.Arrivee.FirstOrDefault(x => x.idArrivee == this.idArrivee);
+                    txtDateOrdre.Value = arr.DateOrdre.Date;
+                    txtNumCourrier.Text = arr.NumCourrier;
+                    txtDateCourrier.Value = arr.DateCourrier.Value.Date;
+                    txtSujet.Text = arr.Sujet;
+                    txtRemarque.Text = arr.Remarques;
+                    txtCateg.SelectedItem = arr.Categorie;
+                    txtEntite.SelectedItem = arr.Entites;
+                    txtTitre.Text = "Edtion Courrier N° : " + arr.NumOrdre;
+                    dgvArriveeDocs.DataSource = arr.ArriveeDocs.Select(
+                        p => new
+                        {
+                            p.idArrivee,
+                            p.idArriveeDocs,
+                            p.TypeDocArrivee,
+                            p.FileName,
+                            size = Math.Round(((p.ContenuFileArrivee.Length) / 1024f), 2) + " KB"
+                        }).ToList();
+                    dgvArriveeDocs.Columns["idArrivee"].Visible = false;
+                    dgvArriveeDocs.Columns["idArriveeDocs"].Visible = false;
+                    dgvArriveeDocs.ColumnHeadersVisible = false;
+                    dgvArriveeDocs.RowHeadersVisible = false;
+                    DataGridViewImageColumn btnDowload = new DataGridViewImageColumn();
+                    btnDowload.Name = "btnDowload";
+                    btnDowload.HeaderText = "";
+                    btnDowload.Image = Properties.Resources.download3;
+                    dgvArriveeDocs.Columns.Add(btnDowload);
+
+                    DataGridViewImageColumn btnDelete = new DataGridViewImageColumn();
+                    btnDelete.Name = "btnDelete";
+                    btnDelete.HeaderText = "";
+                    btnDelete.Image = Properties.Resources.delete1;
+                    dgvArriveeDocs.Columns.Add(btnDelete);
+                    dgvArriveeDocs.Columns["btnDowload"].DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+                    dgvArriveeDocs.Columns["btnDelete"].DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+                    dgvArriveeDocs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
                 }
-            
+            }
+
         }
     }
 }

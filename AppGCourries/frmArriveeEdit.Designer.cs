@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArriveeEdit));
-            this.btnQuitter = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtTitre = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNumCourrier = new System.Windows.Forms.TextBox();
@@ -47,33 +45,18 @@
             this.txtSujet = new System.Windows.Forms.TextBox();
             this.txtDateCourrier = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvArriveeDocs = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnEnregistrer = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnQuitter = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArriveeDocs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitter.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitter.Image")));
-            this.btnQuitter.Location = new System.Drawing.Point(543, 1);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(34, 28);
-            this.btnQuitter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnQuitter.TabIndex = 0;
-            this.btnQuitter.TabStop = false;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 27);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // txtTitre
             // 
@@ -136,7 +119,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(7, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 318);
+            this.groupBox1.Size = new System.Drawing.Size(508, 318);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             // 
@@ -154,7 +137,7 @@
             this.txtRemarque.Location = new System.Drawing.Point(295, 222);
             this.txtRemarque.Multiline = true;
             this.txtRemarque.Name = "txtRemarque";
-            this.txtRemarque.Size = new System.Drawing.Size(250, 73);
+            this.txtRemarque.Size = new System.Drawing.Size(201, 73);
             this.txtRemarque.TabIndex = 17;
             // 
             // txtEntite
@@ -162,7 +145,7 @@
             this.txtEntite.FormattingEnabled = true;
             this.txtEntite.Location = new System.Drawing.Point(295, 154);
             this.txtEntite.Name = "txtEntite";
-            this.txtEntite.Size = new System.Drawing.Size(250, 28);
+            this.txtEntite.Size = new System.Drawing.Size(201, 28);
             this.txtEntite.TabIndex = 16;
             // 
             // label7
@@ -179,7 +162,7 @@
             this.txtCateg.FormattingEnabled = true;
             this.txtCateg.Location = new System.Drawing.Point(295, 92);
             this.txtCateg.Name = "txtCateg";
-            this.txtCateg.Size = new System.Drawing.Size(250, 28);
+            this.txtCateg.Size = new System.Drawing.Size(201, 28);
             this.txtCateg.TabIndex = 14;
             // 
             // label6
@@ -225,6 +208,36 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Date Courrier :";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvArriveeDocs);
+            this.groupBox2.Location = new System.Drawing.Point(522, 38);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(410, 318);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            // 
+            // dgvArriveeDocs
+            // 
+            this.dgvArriveeDocs.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvArriveeDocs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvArriveeDocs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArriveeDocs.Location = new System.Drawing.Point(7, 13);
+            this.dgvArriveeDocs.Name = "dgvArriveeDocs";
+            this.dgvArriveeDocs.RowTemplate.Height = 35;
+            this.dgvArriveeDocs.Size = new System.Drawing.Size(393, 150);
+            this.dgvArriveeDocs.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(521, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Les pièces Jointes :";
+            // 
             // btnEnregistrer
             // 
             this.btnEnregistrer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -233,7 +246,7 @@
             this.btnEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnregistrer.Image = ((System.Drawing.Image)(resources.GetObject("btnEnregistrer.Image")));
             this.btnEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnregistrer.Location = new System.Drawing.Point(208, 362);
+            this.btnEnregistrer.Location = new System.Drawing.Point(358, 362);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(157, 33);
             this.btnEnregistrer.TabIndex = 10;
@@ -241,11 +254,35 @@
             this.btnEnregistrer.UseVisualStyleBackColor = false;
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(7, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 27);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQuitter.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitter.Image")));
+            this.btnQuitter.Location = new System.Drawing.Point(898, 5);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(34, 28);
+            this.btnQuitter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnQuitter.TabIndex = 0;
+            this.btnQuitter.TabStop = false;
+            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            // 
             // frmArriveeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 407);
+            this.ClientSize = new System.Drawing.Size(934, 407);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEnregistrer);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtTitre);
@@ -258,10 +295,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmArriveeAdd";
             this.Load += new System.EventHandler(this.frmArriveeEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArriveeDocs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +327,8 @@
         private System.Windows.Forms.ComboBox txtCateg;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEnregistrer;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dgvArriveeDocs;
+        private System.Windows.Forms.Label label1;
     }
 }

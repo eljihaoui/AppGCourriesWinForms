@@ -247,6 +247,7 @@
     <None Include="Resources\edit1.png" />
     <None Include="Resources\delete1.png" />
     <None Include="Resources\edit2.png" />
+    <None Include="Resources\download3.png" />
     <Content Include="ScriptDB\DB_GCourries.sql" />
     <Content Include="ScriptDB\MCD.png" />
   </ItemGroup>
