@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,22 @@ namespace AppGCourries
 
             }
         }
+        private void loadDataArriveesDocs()
+        {
+            using (DBGCourriesContext db = new DBGCourriesContext())
+            {
+                dgvArriveeDocs.DataSource = db.Arrivee.FirstOrDefault(x=>x.idArrivee==this.idArrivee).ArriveeDocs.Select(
+                              p => new
+                              {
+                                  p.idArrivee,
+                                  p.idArriveeDocs,
+                                  p.TypeDocArrivee,
+                                  p.FileName,
+                                  size = Math.Round(((p.ContenuFileArrivee.Length) / 1024f), 2) + " KB"
+                              }).ToList();
+            }
 
+        }
         private void frmArriveeEdit_Load(object sender, EventArgs e)
         {
             using (DBGCourriesContext db = new DBGCourriesContext())
@@ -88,15 +104,9 @@ namespace AppGCourries
                     txtCateg.SelectedItem = arr.Categorie;
                     txtEntite.SelectedItem = arr.Entites;
                     txtTitre.Text = "Edtion Courrier N° : " + arr.NumOrdre;
-                    dgvArriveeDocs.DataSource = arr.ArriveeDocs.Select(
-                        p => new
-                        {
-                            p.idArrivee,
-                            p.idArriveeDocs,
-                            p.TypeDocArrivee,
-                            p.FileName,
-                            size = Math.Round(((p.ContenuFileArrivee.Length) / 1024f), 2) + " KB"
-                        }).ToList();
+                    // charger les pièces jointes de ce courrier
+                    loadDataArriveesDocs();
+
                     dgvArriveeDocs.Columns["idArrivee"].Visible = false;
                     dgvArriveeDocs.Columns["idArriveeDocs"].Visible = false;
                     dgvArriveeDocs.ColumnHeadersVisible = false;
@@ -116,6 +126,69 @@ namespace AppGCourries
                     dgvArriveeDocs.Columns["btnDelete"].DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
                     dgvArriveeDocs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+                }
+            }
+
+        }
+
+        private void dgvArriveeDocs_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            string ColName = dgvArriveeDocs.Columns[e.ColumnIndex].Name;
+            if (ColName != "btnDowload" && ColName != "btnDelete")
+            {
+                dgvArriveeDocs.Cursor = Cursors.Default;
+            }
+            else
+            {
+                dgvArriveeDocs.Cursor = Cursors.Hand;
+            }
+        }
+
+        private void dgvArriveeDocs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string ColName = dgvArriveeDocs.Columns[e.ColumnIndex].Name;
+            if (ColName == "btnDelete")
+            {
+                DialogResult dr = MessageBox.Show(
+                    "Voulez Vous supprimer ce fichier ",
+                    "Confirmation de suppression",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning
+                    );
+                if (dr == DialogResult.Yes)
+                {
+                    using (DBGCourriesContext db = new DBGCourriesContext())
+                    {
+                        int idArrDocs = Convert.ToInt32(dgvArriveeDocs.Rows[e.RowIndex].Cells["idArriveeDocs"].Value);
+                        ArriveeDocs ardocs = db.ArriveeDocs.FirstOrDefault(x => x.idArriveeDocs == idArrDocs);
+                        db.ArriveeDocs.Remove(ardocs);
+                        db.SaveChanges();
+                        // charger les pièces jointes de ce courrier
+                        loadDataArriveesDocs();
+
+                    }
+                }
+            }
+
+            if (ColName == "btnDowload")
+            {
+                int idArrDocs = Convert.ToInt32(dgvArriveeDocs.Rows[e.RowIndex].Cells["idArriveeDocs"].Value);
+                using(DBGCourriesContext db = new DBGCourriesContext())
+                {
+                    ArriveeDocs ardocs = db.ArriveeDocs.FirstOrDefault(x => x.idArriveeDocs == idArrDocs);
+                    byte[] fileContent = ardocs.ContenuFileArrivee;
+                    string fileName = ardocs.FileName;
+                    Stream strm;
+                    SaveFileDialog saveFile = new SaveFileDialog();
+                    saveFile.Filter = "All Files (*.*)|*.*";
+                    saveFile.FileName = fileName;
+                    if (saveFile.ShowDialog() == DialogResult.OK)
+                    {
+                        if ((strm = saveFile.OpenFile()) != null)
+                        {
+                            strm.Write(fileContent, 0, fileContent.Length);
+                            strm.Close();
+                        }
+                    }
                 }
             }
 
