@@ -193,5 +193,46 @@ namespace AppGCourries
             }
 
         }
+        // Convert file to binary data
+        public byte[] GetBinaryFromFile(string file)
+        {
+            byte[] bytes;
+            using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+            {
+                bytes = new byte[fs.Length];
+                fs.Read(bytes, 0, (int)fs.Length);
+            }
+            return bytes;
+        }
+        private void btnUploadMoreFiles_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = " Documents Files |*.docx;*.xlsx;*.pdf|"
+                        + "Images |*.png;*.jpg;*.gif|"
+                        + "All files |*.*";
+            ofd.Multiselect = true;
+            ofd.Title = "Sélectionner les fichiers à importer ....";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                using(DBGCourriesContext db= new DBGCourriesContext())
+                {
+                    FileInfo finfo;
+                    ArriveeDocs arDocs;
+                    foreach (string file in ofd.FileNames)
+                    {
+                        finfo = new FileInfo(file);
+                        arDocs = new ArriveeDocs();
+                        arDocs.idArrivee = this.idArrivee;
+                        arDocs.TypeDocArrivee = finfo.Extension;
+                        arDocs.FileName = finfo.Name;
+                        arDocs.ContenuFileArrivee = GetBinaryFromFile(finfo.FullName);
+                        db.ArriveeDocs.Add(arDocs);
+                        db.SaveChanges();
+                    }
+                    // charger les pièces jointes de ce courrier
+                    loadDataArriveesDocs();
+                }
+            }
+        }
     }
 }

@@ -51,6 +51,7 @@
             this.btnEnregistrer = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnQuitter = new System.Windows.Forms.PictureBox();
+            this.btnUploadMoreFiles = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArriveeDocs)).BeginInit();
@@ -64,7 +65,7 @@
             this.txtTitre.BackColor = System.Drawing.Color.Transparent;
             this.txtTitre.Location = new System.Drawing.Point(36, 9);
             this.txtTitre.Name = "txtTitre";
-            this.txtTitre.Size = new System.Drawing.Size(229, 27);
+            this.txtTitre.Size = new System.Drawing.Size(150, 20);
             this.txtTitre.TabIndex = 3;
             this.txtTitre.Text = "Edtion Courrier N° : ";
             // 
@@ -73,7 +74,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 27);
+            this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Date Ordre :";
             // 
@@ -81,7 +82,7 @@
             // 
             this.txtNumCourrier.Location = new System.Drawing.Point(11, 94);
             this.txtNumCourrier.Name = "txtNumCourrier";
-            this.txtNumCourrier.Size = new System.Drawing.Size(225, 35);
+            this.txtNumCourrier.Size = new System.Drawing.Size(225, 26);
             this.txtNumCourrier.TabIndex = 6;
             // 
             // txtDateOrdre
@@ -89,7 +90,7 @@
             this.txtDateOrdre.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDateOrdre.Location = new System.Drawing.Point(11, 33);
             this.txtDateOrdre.Name = "txtDateOrdre";
-            this.txtDateOrdre.Size = new System.Drawing.Size(225, 35);
+            this.txtDateOrdre.Size = new System.Drawing.Size(225, 26);
             this.txtDateOrdre.TabIndex = 7;
             // 
             // label3
@@ -97,7 +98,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 27);
+            this.label3.Size = new System.Drawing.Size(122, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Numero Ordre :";
             // 
@@ -128,7 +129,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(295, 197);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 27);
+            this.label8.Size = new System.Drawing.Size(99, 20);
             this.label8.TabIndex = 18;
             this.label8.Text = "Remarques :";
             // 
@@ -145,7 +146,7 @@
             this.txtEntite.FormattingEnabled = true;
             this.txtEntite.Location = new System.Drawing.Point(295, 154);
             this.txtEntite.Name = "txtEntite";
-            this.txtEntite.Size = new System.Drawing.Size(201, 35);
+            this.txtEntite.Size = new System.Drawing.Size(201, 28);
             this.txtEntite.TabIndex = 16;
             // 
             // label7
@@ -153,7 +154,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(291, 133);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 27);
+            this.label7.Size = new System.Drawing.Size(57, 20);
             this.label7.TabIndex = 15;
             this.label7.Text = "Entité :";
             // 
@@ -162,7 +163,7 @@
             this.txtCateg.FormattingEnabled = true;
             this.txtCateg.Location = new System.Drawing.Point(295, 92);
             this.txtCateg.Name = "txtCateg";
-            this.txtCateg.Size = new System.Drawing.Size(201, 35);
+            this.txtCateg.Size = new System.Drawing.Size(201, 28);
             this.txtCateg.TabIndex = 14;
             // 
             // label6
@@ -170,7 +171,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(291, 69);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 27);
+            this.label6.Size = new System.Drawing.Size(92, 20);
             this.label6.TabIndex = 13;
             this.label6.Text = "Catégorie :";
             // 
@@ -179,7 +180,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 197);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 27);
+            this.label5.Size = new System.Drawing.Size(55, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "Sujet : ";
             // 
@@ -196,7 +197,7 @@
             this.txtDateCourrier.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDateCourrier.Location = new System.Drawing.Point(11, 156);
             this.txtDateCourrier.Name = "txtDateCourrier";
-            this.txtDateCourrier.Size = new System.Drawing.Size(225, 35);
+            this.txtDateCourrier.Size = new System.Drawing.Size(225, 26);
             this.txtDateCourrier.TabIndex = 10;
             // 
             // label4
@@ -204,7 +205,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 133);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(176, 27);
+            this.label4.Size = new System.Drawing.Size(116, 20);
             this.label4.TabIndex = 9;
             this.label4.Text = "Date Courrier :";
             // 
@@ -237,7 +238,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(521, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(225, 27);
+            this.label1.Size = new System.Drawing.Size(147, 20);
             this.label1.TabIndex = 12;
             this.label1.Text = "Les pièces Jointes :";
             // 
@@ -279,11 +280,28 @@
             this.btnQuitter.TabStop = false;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
+            // btnUploadMoreFiles
+            // 
+            this.btnUploadMoreFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnUploadMoreFiles.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUploadMoreFiles.FlatAppearance.BorderSize = 0;
+            this.btnUploadMoreFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadMoreFiles.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadMoreFiles.Image")));
+            this.btnUploadMoreFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadMoreFiles.Location = new System.Drawing.Point(737, 9);
+            this.btnUploadMoreFiles.Name = "btnUploadMoreFiles";
+            this.btnUploadMoreFiles.Size = new System.Drawing.Size(148, 33);
+            this.btnUploadMoreFiles.TabIndex = 13;
+            this.btnUploadMoreFiles.Text = "Parcourrir ....";
+            this.btnUploadMoreFiles.UseVisualStyleBackColor = false;
+            this.btnUploadMoreFiles.Click += new System.EventHandler(this.btnUploadMoreFiles_Click);
+            // 
             // frmArriveeEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 407);
+            this.Controls.Add(this.btnUploadMoreFiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEnregistrer);
@@ -333,5 +351,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvArriveeDocs;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUploadMoreFiles;
     }
 }
