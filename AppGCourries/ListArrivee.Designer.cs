@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListArrivee));
             this.dataGridArrivee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this.txtDateFin = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
             this.useDate = new System.Windows.Forms.CheckBox();
+            this.btnPrintListArrivee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArrivee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,14 +50,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridArrivee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridArrivee.Location = new System.Drawing.Point(4, 37);
             this.dataGridArrivee.Name = "dataGridArrivee";
             this.dataGridArrivee.Size = new System.Drawing.Size(890, 276);
@@ -149,10 +150,28 @@
             this.useDate.Text = "Date";
             this.useDate.UseVisualStyleBackColor = true;
             // 
+            // btnPrintListArrivee
+            // 
+            this.btnPrintListArrivee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrintListArrivee.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnPrintListArrivee.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrintListArrivee.FlatAppearance.BorderSize = 0;
+            this.btnPrintListArrivee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintListArrivee.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintListArrivee.Image")));
+            this.btnPrintListArrivee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintListArrivee.Location = new System.Drawing.Point(161, 328);
+            this.btnPrintListArrivee.Name = "btnPrintListArrivee";
+            this.btnPrintListArrivee.Size = new System.Drawing.Size(140, 37);
+            this.btnPrintListArrivee.TabIndex = 9;
+            this.btnPrintListArrivee.Text = "Imprimer";
+            this.btnPrintListArrivee.UseVisualStyleBackColor = false;
+            this.btnPrintListArrivee.Click += new System.EventHandler(this.btnPrintListArrivee_Click);
+            // 
             // ListArrivee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnPrintListArrivee);
             this.Controls.Add(this.useDate);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtDateFin);
@@ -185,5 +204,6 @@
         private System.Windows.Forms.DateTimePicker txtDateFin;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.CheckBox useDate;
+        private System.Windows.Forms.Button btnPrintListArrivee;
     }
 }

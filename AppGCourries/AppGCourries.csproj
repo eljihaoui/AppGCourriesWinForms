@@ -36,6 +36,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -47,6 +52,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +77,12 @@
     <Compile Include="frmArriveeAdd.Designer.cs">
       <DependentUpon>frmArriveeAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRptListeArrivee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptListeArrivee.Designer.cs">
+      <DependentUpon>frmRptListeArrivee.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListArrivee.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +101,7 @@
     <Compile Include="Models\ArriveeDocs.cs">
       <DependentUpon>GCourriesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArriveeViewModel.cs" />
     <Compile Include="Models\Categorie.cs">
       <DependentUpon>GCourriesModel.tt</DependentUpon>
     </Compile>
@@ -120,11 +134,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\RptListeArrivee.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptListeArrivee.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="frmArriveeEdit.resx">
       <DependentUpon>frmArriveeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmArriveeAdd.resx">
       <DependentUpon>frmArriveeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptListeArrivee.resx">
+      <DependentUpon>frmRptListeArrivee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListArrivee.resx">
       <DependentUpon>ListArrivee.cs</DependentUpon>
@@ -142,6 +165,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\RptListeArrivee.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptListeArrivee.cs</LastGenOutput>
+    </EmbeddedResource>
     <EntityDeploy Include="Models\GCourriesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GCourriesModel.Designer.cs</LastGenOutput>
@@ -253,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

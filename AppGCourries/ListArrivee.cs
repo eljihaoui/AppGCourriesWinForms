@@ -157,5 +157,11 @@ namespace AppGCourries
         {
             loadData();
         }
+
+        private void btnPrintListArrivee_Click(object sender, EventArgs e)
+        {
+            frmRptListeArrivee frm = new frmRptListeArrivee();
+            frm.ShowDialog();
+        }
     }
 }

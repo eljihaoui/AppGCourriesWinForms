@@ -288,11 +288,11 @@
             this.btnUploadMoreFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUploadMoreFiles.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadMoreFiles.Image")));
             this.btnUploadMoreFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadMoreFiles.Location = new System.Drawing.Point(737, 9);
+            this.btnUploadMoreFiles.Location = new System.Drawing.Point(724, 9);
             this.btnUploadMoreFiles.Name = "btnUploadMoreFiles";
-            this.btnUploadMoreFiles.Size = new System.Drawing.Size(148, 33);
+            this.btnUploadMoreFiles.Size = new System.Drawing.Size(117, 26);
             this.btnUploadMoreFiles.TabIndex = 13;
-            this.btnUploadMoreFiles.Text = "Parcourrir ....";
+            this.btnUploadMoreFiles.Text = "     Parcourrir ....";
             this.btnUploadMoreFiles.UseVisualStyleBackColor = false;
             this.btnUploadMoreFiles.Click += new System.EventHandler(this.btnUploadMoreFiles_Click);
             // 
