@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppGCourries.Models;
+using AppGCourries.Reports;
 
 namespace AppGCourries
 {
@@ -56,6 +57,13 @@ namespace AppGCourries
         private void ListArrivee_Load(object sender, EventArgs e)
         {
             loadData();
+            //-------------------------------------
+            DataGridViewImageColumn btnPrint = new DataGridViewImageColumn();
+            btnPrint.Name = "btnPrint";
+            btnPrint.HeaderText = "";
+            btnPrint.Image = Properties.Resources.print0;
+            dataGridArrivee.Columns.Add(btnPrint);
+            //--------------------------------------------
             DataGridViewImageColumn btnEdit = new DataGridViewImageColumn();
             btnEdit.Name = "btnEdit";
             btnEdit.HeaderText = "";
@@ -115,6 +123,37 @@ namespace AppGCourries
             row.Selected = true;
             int idArriveeCur = Convert.ToInt32(row.Cells["ID"].Value);
             string sujet = row.Cells["Sujet"].Value.ToString();
+            if (ColName == "btnPrint")
+            {
+                using (DBGCourriesContext db = new DBGCourriesContext())
+                {
+                    List<ArriveeViewModel> lst = new List<ArriveeViewModel>();
+                    lst = db.Arrivee.Select(
+
+                        p => new ArriveeViewModel
+                        {
+                            idArrivee = p.idArrivee,
+                            Categ = p.Categorie.LibCateg,
+                            Entite = p.Entites.LibEntite,
+                            Annee = p.Annee,
+                            NumCourrier = p.NumCourrier,
+                            DateOrdre = p.DateOrdre,
+                            NumOrdre = p.NumOrdre,
+                            DateCourrier = (DateTime)p.DateCourrier,
+                            Sujet = p.Sujet,
+                            Remarques = p.Remarques
+                        }
+                        ).Where(x => x.idArrivee == idArriveeCur).ToList();
+                    rptFicheCourrier fiche = new rptFicheCourrier();
+                    fiche.SetDataSource(lst);
+                    frmPrintReport frm = new frmPrintReport();
+                    frm.linkReport(fiche);
+                    frm.ShowDialog();
+
+                }
+
+            }
+
             if (ColName == "btnEdit")
             {
                 dataGridArrivee_CellContentDoubleClick(sender, e);
@@ -143,7 +182,7 @@ namespace AppGCourries
         private void dataGridArrivee_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
-            if (ColName != "btnEdit" && ColName != "btnDelete")
+            if (ColName != "btnEdit" && ColName != "btnDelete" && ColName != "btnPrint")
             {
                 dataGridArrivee.Cursor = Cursors.Default;
             }
@@ -160,9 +199,39 @@ namespace AppGCourries
 
         private void btnPrintListArrivee_Click(object sender, EventArgs e)
         {
-            frmRptListeArrivee frm = new frmRptListeArrivee(txtCritere.Text,
-                useDate.Checked, txtDateDeb.Value.Date, txtDateFin.Value.Date);
-            frm.ShowDialog();
+
+            using (DBGCourriesContext db = new DBGCourriesContext())
+            {
+                List<ArriveeViewModel> list = new List<ArriveeViewModel>();
+                list = db.Arrivee.Select(
+                    p => new ArriveeViewModel
+                    {
+                        idArrivee = p.idArrivee,
+                        Categ = p.Categorie.LibCateg,
+                        Entite = p.Entites.LibEntite,
+                        Annee = p.Annee,
+                        NumCourrier = p.NumCourrier,
+                        DateOrdre = p.DateOrdre,
+                        NumOrdre = p.NumOrdre,
+                        DateCourrier = (DateTime)p.DateCourrier,
+                        Sujet = p.Sujet,
+                        Remarques = p.Remarques
+                    }
+                    ).ToList();
+                if (!String.IsNullOrEmpty(this.txtCritere.Text))
+                {
+                    list = list.Where(x => x.Sujet.ToLower().Contains(this.txtCritere.Text.ToLower())).ToList();
+                }
+                if (useDate.Checked)
+                {
+                    list = list.Where(x => x.DateOrdre >= this.txtDateDeb.Value.Date && x.DateOrdre <= this.txtDateFin.Value.Date).ToList();
+                }
+                RptListeArrivee rpt = new RptListeArrivee();
+                rpt.SetDataSource(list);
+                frmPrintReport frmPrint = new frmPrintReport();
+                frmPrint.linkReport(rpt);
+                frmPrint.ShowDialog();
+            }
         }
     }
 }
