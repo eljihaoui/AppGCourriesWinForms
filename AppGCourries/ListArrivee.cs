@@ -160,7 +160,8 @@ namespace AppGCourries
 
         private void btnPrintListArrivee_Click(object sender, EventArgs e)
         {
-            frmRptListeArrivee frm = new frmRptListeArrivee();
+            frmRptListeArrivee frm = new frmRptListeArrivee(txtCritere.Text,
+                useDate.Checked, txtDateDeb.Value.Date, txtDateFin.Value.Date);
             frm.ShowDialog();
         }
     }

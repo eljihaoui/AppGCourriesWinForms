@@ -14,9 +14,21 @@ namespace AppGCourries
 {
     public partial class frmRptListeArrivee : Form
     {
+        private readonly string Critere;
+        private readonly bool UseDate;
+        private readonly DateTime DateDebut, DateFin;
         public frmRptListeArrivee()
         {
             InitializeComponent();
+        }
+
+        public frmRptListeArrivee(string critere, bool useDate, DateTime dateDebut, DateTime dateFin)
+        {
+            InitializeComponent();
+            this.Critere = critere;
+            this.UseDate = useDate;
+            this.DateDebut = dateDebut;
+            this.DateFin = dateFin;
         }
 
         private void frmRptListeArrivee_Load(object sender, EventArgs e)
@@ -39,6 +51,14 @@ namespace AppGCourries
                         Remarques=p.Remarques
                     }
                     ).ToList();
+                if (!String.IsNullOrEmpty(this.Critere))
+                {
+                    list = list.Where(x => x.Sujet.ToLower().Contains(this.Critere.ToLower())).ToList();
+                }
+                if (UseDate)
+                {
+                    list = list.Where(x => x.DateOrdre>=this.DateDebut && x.DateOrdre<=this.DateFin).ToList();
+                }
                 RptListeArrivee rpt = new RptListeArrivee();
                 rpt.SetDataSource(list);
                 crystalReportViewer1.ReportSource = rpt;
