@@ -113,9 +113,6 @@ namespace AppGCourries
 
             }
         }
-
-
-
         private void dataGridArrivee_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
@@ -144,8 +141,23 @@ namespace AppGCourries
                             Remarques = p.Remarques
                         }
                         ).Where(x => x.idArrivee == idArriveeCur).ToList();
+
+                    List <ArriveeDetailViewModel> listSupReport = new List<ArriveeDetailViewModel>();
+                    listSupReport = db.Arrivee.FirstOrDefault(a => a.idArrivee == idArriveeCur).ArriveeDocs.Select(
+                        p=>new ArriveeDetailViewModel
+                        {
+                            idArrivee=p.idArrivee,
+                            idArriveeDocs=p.idArriveeDocs,
+                            typeDoc=p.TypeDocArrivee,
+                            filename = p.FileName,
+                            sizeFile= Math.Round((p.ContenuFileArrivee.Length/1024f),2) + " KB"
+                        }
+                        ).ToList();
+
+
                     rptFicheCourrier fiche = new rptFicheCourrier();
                     fiche.SetDataSource(lst);
+                    fiche.Subreports["FicheCourrierDetails.rpt"].SetDataSource(listSupReport);
                     frmPrintReport frm = new frmPrintReport();
                     frm.linkReport(fiche);
                     frm.ShowDialog();
