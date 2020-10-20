@@ -42,13 +42,13 @@
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // frmRptListeArrivee
+            // frmPrintReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "frmRptListeArrivee";
+            this.Name = "frmPrintReport";
             this.Text = "frmRptListeArrivee";
             this.ResumeLayout(false);
 

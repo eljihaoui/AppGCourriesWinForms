@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppGCourries.Models;
 using AppGCourries.Reports;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
+using AppGCourries.Shared;
 
 namespace AppGCourries
 {
@@ -244,6 +247,45 @@ namespace AppGCourries
                 frmPrint.linkReport(rpt);
                 frmPrint.ShowDialog();
             }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook excelWorkBook = excelApp.Workbooks.Add();
+            Excel._Worksheet  excelWorkSheet= excelWorkBook.Sheets[1];
+            excelWorkSheet.Name = "Liste des courries Arrivées";
+            int nbCol;
+            PropertyInfo[] colonnes = typeof(ArriveeViewModel).GetProperties();
+            nbCol = colonnes.Length;
+
+            // Remplir les colonnes du fichier EXcel 
+            for (int i = 0; i < nbCol; i++)
+            {
+                excelWorkSheet.Cells[1, i + 1] = colonnes[i].Name;
+            }
+
+            // remplir les lignes de la feuille Excel
+            List<ArriveeViewModel> list = SahredData.getListArrivess();
+            ArriveeViewModel arvm = new ArriveeViewModel();
+            for (int i = 0; i < list.Count; i++)
+            {
+                arvm = list.ElementAt(i);
+                for (int j = 0; j < nbCol; j++)
+                {
+                    excelWorkSheet.Cells[i + 2, j + 1] = arvm.GetType().GetProperty(colonnes[j].Name).GetValue(arvm, null);
+
+                }
+            }
+            SaveFileDialog savef = new SaveFileDialog();
+            savef.FileName = "Liste des Courries Arrivées";
+            savef.Filter = "Fichier Excel |*.xlsx";
+            if (savef.ShowDialog() == DialogResult.OK)
+            {
+                excelWorkBook.SaveAs(savef.FileName);
+            }
+            excelWorkBook.Close();
+            excelApp.Quit();
         }
     }
 }
