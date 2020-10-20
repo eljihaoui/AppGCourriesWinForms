@@ -61,6 +61,7 @@ namespace AppGCourries
                 db.Arrivee.Add(ar);
                 db.SaveChanges();
 
+
                 ArriveeDocs arDocs = new ArriveeDocs();
                 arDocs.idArrivee = ar.idArrivee;
                 foreach (ListViewItem item in txtPJointes.Items)
