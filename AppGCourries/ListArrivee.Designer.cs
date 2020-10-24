@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListArrivee));
             this.dataGridArrivee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.useDate = new System.Windows.Forms.CheckBox();
             this.btnPrintListArrivee = new System.Windows.Forms.Button();
-            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.btnExporterToExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArrivee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,14 +51,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridArrivee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridArrivee.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridArrivee.Location = new System.Drawing.Point(4, 37);
             this.dataGridArrivee.Name = "dataGridArrivee";
             this.dataGridArrivee.Size = new System.Drawing.Size(890, 276);
@@ -168,28 +168,28 @@
             this.btnPrintListArrivee.UseVisualStyleBackColor = false;
             this.btnPrintListArrivee.Click += new System.EventHandler(this.btnPrintListArrivee_Click);
             // 
-            // btnExportExcel
+            // btnExporterToExcel
             // 
-            this.btnExportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExportExcel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnExportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportExcel.FlatAppearance.BorderSize = 0;
-            this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportExcel.Image")));
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(320, 328);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(140, 37);
-            this.btnExportExcel.TabIndex = 10;
-            this.btnExportExcel.Text = "Exporter";
-            this.btnExportExcel.UseVisualStyleBackColor = false;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            this.btnExporterToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExporterToExcel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnExporterToExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExporterToExcel.FlatAppearance.BorderSize = 0;
+            this.btnExporterToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExporterToExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExporterToExcel.Image")));
+            this.btnExporterToExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExporterToExcel.Location = new System.Drawing.Point(326, 328);
+            this.btnExporterToExcel.Name = "btnExporterToExcel";
+            this.btnExporterToExcel.Size = new System.Drawing.Size(140, 37);
+            this.btnExporterToExcel.TabIndex = 10;
+            this.btnExporterToExcel.Text = "Exporter";
+            this.btnExporterToExcel.UseVisualStyleBackColor = false;
+            this.btnExporterToExcel.Click += new System.EventHandler(this.btnExporterToExcel_Click);
             // 
             // ListArrivee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnExportExcel);
+            this.Controls.Add(this.btnExporterToExcel);
             this.Controls.Add(this.btnPrintListArrivee);
             this.Controls.Add(this.useDate);
             this.Controls.Add(this.btnSearch);
@@ -224,6 +224,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.CheckBox useDate;
         private System.Windows.Forms.Button btnPrintListArrivee;
-        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Button btnExporterToExcel;
     }
 }

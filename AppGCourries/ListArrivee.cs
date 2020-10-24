@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 using AppGCourries.Models;
 using AppGCourries.Reports;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Reflection;
 using AppGCourries.Shared;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AppGCourries
 {
@@ -249,36 +245,34 @@ namespace AppGCourries
             }
         }
 
-        private void btnExportExcel_Click(object sender, EventArgs e)
+        private void btnExporterToExcel_Click(object sender, EventArgs e)
         {
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook excelWorkBook = excelApp.Workbooks.Add();
-            Excel._Worksheet  excelWorkSheet= excelWorkBook.Sheets[1];
-            excelWorkSheet.Name = "Liste des courries Arrivées";
-            int nbCol;
-            PropertyInfo[] colonnes = typeof(ArriveeViewModel).GetProperties();
-            nbCol = colonnes.Length;
-
-            // Remplir les colonnes du fichier EXcel 
-            for (int i = 0; i < nbCol; i++)
+            Excel._Worksheet excelSheet = excelWorkBook.Sheets[1];
+            excelSheet.Name = "Liste des Courries Arrivées";
+            PropertyInfo[] cols = typeof(ArriveeViewModel).GetProperties();
+            int nbcol = cols.Length;
+            // Remplir les colonnes du fichier Excel
+            for (int i = 0; i < nbcol; i++)
             {
-                excelWorkSheet.Cells[1, i + 1] = colonnes[i].Name;
+                excelSheet.Cells[1, i + 1] = cols[i].Name;
             }
 
-            // remplir les lignes de la feuille Excel
-            List<ArriveeViewModel> list = SahredData.getListArrivess();
-            ArriveeViewModel arvm = new ArriveeViewModel();
-            for (int i = 0; i < list.Count; i++)
+            // remplir les lignes du fichier excel par la liste des courriers arrivées
+            List<ArriveeViewModel> listCourries = SharedData.getListCourriesArrivees();
+            ArriveeViewModel arVm = new ArriveeViewModel();
+            for (int i = 0; i < listCourries.Count; i++)
             {
-                arvm = list.ElementAt(i);
-                for (int j = 0; j < nbCol; j++)
+                arVm = listCourries.ElementAt(i);
+                for (int j= 0; j < nbcol; j++)
                 {
-                    excelWorkSheet.Cells[i + 2, j + 1] = arvm.GetType().GetProperty(colonnes[j].Name).GetValue(arvm, null);
-
+                    excelSheet.Cells[i + 2, j + 1] = arVm.GetType().GetProperty(cols[j].Name).GetValue(arVm, null);
                 }
             }
+
             SaveFileDialog savef = new SaveFileDialog();
-            savef.FileName = "Liste des Courries Arrivées";
+            savef.FileName = "Liste des courries Arrivées";
             savef.Filter = "Fichier Excel |*.xlsx";
             if (savef.ShowDialog() == DialogResult.OK)
             {

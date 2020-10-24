@@ -1,4 +1,5 @@
 ﻿using AppGCourries.Models;
+using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace AppGCourries.Shared
 {
-    public class SahredData
+    public class SharedData
     {
-        public static List<ArriveeViewModel> getListArrivess()
-        {        
+        public static List<ArriveeViewModel> getListCourriesArrivees()
+        {
             List<ArriveeViewModel> list = new List<ArriveeViewModel>();
             using (DBGCourriesContext db = new DBGCourriesContext())
             {

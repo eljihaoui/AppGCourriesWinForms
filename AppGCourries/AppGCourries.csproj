@@ -153,7 +153,7 @@
       <DependentUpon>RptListeArrivee.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Shared\SahredData.cs" />
+    <Compile Include="Shared\SharedData.cs" />
     <EmbeddedResource Include="frmArriveeEdit.resx">
       <DependentUpon>frmArriveeEdit.cs</DependentUpon>
     </EmbeddedResource>
