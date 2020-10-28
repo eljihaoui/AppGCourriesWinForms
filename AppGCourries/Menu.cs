@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppGCourries.Courries_Arrivees;
+using AppGCourries.Courries_Departs;
+using System;
 using System.Windows.Forms;
 
 namespace AppGCourries
@@ -36,6 +31,14 @@ namespace AppGCourries
             pContent.Controls.Clear();
             pContent.Controls.Add(frmList);
            
+        }
+
+        private void btnDepart_Click(object sender, EventArgs e)
+        {
+            ListDeparts frmList = new ListDeparts();
+            frmList.Dock = DockStyle.Fill;
+            pContent.Controls.Clear();
+            pContent.Controls.Add(frmList);
         }
     }
 }

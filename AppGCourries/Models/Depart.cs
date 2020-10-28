@@ -28,7 +28,7 @@ namespace AppGCourries.Models
         public int NumOrdre { get; set; }
         public System.DateTime DateOrdre { get; set; }
         public string Sujet { get; set; }
-        public string Ramarques { get; set; }
+        public string Remarques { get; set; }
     
         public virtual Categorie Categorie { get; set; }
         public virtual TUsers TUsers { get; set; }

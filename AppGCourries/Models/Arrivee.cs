@@ -33,9 +33,9 @@ namespace AppGCourries.Models
         public string Remarques { get; set; }
     
         public virtual Categorie Categorie { get; set; }
-        public virtual Entites Entites { get; set; }
         public virtual TUsers TUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArriveeDocs> ArriveeDocs { get; set; }
+        public virtual Entites Entites { get; set; }
     }
 }

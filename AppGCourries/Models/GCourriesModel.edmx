@@ -49,7 +49,7 @@
           <Property Name="NumOrdre" Type="int" Nullable="false" />
           <Property Name="DateOrdre" Type="datetime" Nullable="false" />
           <Property Name="Sujet" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Ramarques" Type="varchar" MaxLength="255" />
+          <Property Name="Remarques" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="DepartDocs">
           <Key>
@@ -64,10 +64,10 @@
         <EntityType Name="Destiner">
           <Key>
             <PropertyRef Name="IdDepart" />
-            <PropertyRef Name="idEntute" />
+            <PropertyRef Name="idEntite" />
           </Key>
           <Property Name="IdDepart" Type="int" Nullable="false" />
-          <Property Name="idEntute" Type="int" Nullable="false" />
+          <Property Name="idEntite" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Entites">
           <Key>
@@ -177,7 +177,7 @@
               <PropertyRef Name="idEntite" />
             </Principal>
             <Dependent Role="Destiner">
-              <PropertyRef Name="idEntute" />
+              <PropertyRef Name="idEntite" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,9 +259,9 @@
           <Property Name="Sujet" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Remarques" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Categorie" Relationship="Self.FK_ARRIVEE_AVOIR_CATEGORI" FromRole="Arrivee" ToRole="Categorie" />
-          <NavigationProperty Name="Entites" Relationship="Self.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Arrivee" ToRole="Entites" />
           <NavigationProperty Name="TUsers" Relationship="Self.FK_ARRIVEE_SAISIR_TUSERS" FromRole="Arrivee" ToRole="TUsers" />
           <NavigationProperty Name="ArriveeDocs" Relationship="Self.FK_ARRIVEED_AVOIR_PJ_ARRIVEE" FromRole="Arrivee" ToRole="ArriveeDocs" />
+          <NavigationProperty Name="Entites" Relationship="DBGCourriesModel.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Arrivee" ToRole="Entites" />
         </EntityType>
         <EntityType Name="ArriveeDocs">
           <Key>
@@ -294,11 +294,11 @@
           <Property Name="NumOrdre" Type="Int32" Nullable="false" />
           <Property Name="DateOrdre" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Sujet" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ramarques" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Categorie" Relationship="Self.FK_DEPART_CLASSER_CATEGORI" FromRole="Depart" ToRole="Categorie" />
           <NavigationProperty Name="TUsers" Relationship="Self.FK_DEPART_ENREGISTR_TUSERS" FromRole="Depart" ToRole="TUsers" />
           <NavigationProperty Name="DepartDocs" Relationship="Self.FK_DEPARTDO_AVOIR_DOC_DEPART" FromRole="Depart" ToRole="DepartDocs" />
-          <NavigationProperty Name="Entites" Relationship="Self.Destiner" FromRole="Depart" ToRole="Entites" />
+          <Property Name="Remarques" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Entites" Relationship="DBGCourriesModel.Destiner" FromRole="Depart" ToRole="Entites" />
         </EntityType>
         <EntityType Name="DepartDocs">
           <Key>
@@ -310,15 +310,6 @@
           <Property Name="ContenuFileDepart" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Depart" Relationship="Self.FK_DEPARTDO_AVOIR_DOC_DEPART" FromRole="DepartDocs" ToRole="Depart" />
           <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Entites">
-          <Key>
-            <PropertyRef Name="idEntite" />
-          </Key>
-          <Property Name="idEntite" Type="Int32" Nullable="false" />
-          <Property Name="LibEntite" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Arrivee" Relationship="Self.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Entites" ToRole="Arrivee" />
-          <NavigationProperty Name="Depart" Relationship="Self.Destiner" FromRole="Entites" ToRole="Depart" />
         </EntityType>
         <EntityType Name="TUsers">
           <Key>
@@ -340,18 +331,6 @@
             </Principal>
             <Dependent Role="Arrivee">
               <PropertyRef Name="idCateg" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ARRIVEE_ENVOYER_ENTITES">
-          <End Role="Entites" Type="Self.Entites" Multiplicity="1" />
-          <End Role="Arrivee" Type="Self.Arrivee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entites">
-              <PropertyRef Name="idEntite" />
-            </Principal>
-            <Dependent Role="Arrivee">
-              <PropertyRef Name="idEntite" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -415,24 +394,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Destiner">
-          <End Role="Entites" Type="Self.Entites" Multiplicity="*" />
-          <End Role="Depart" Type="Self.Depart" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="DBGCourriesContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Arrivee" EntityType="Self.Arrivee" />
           <EntitySet Name="ArriveeDocs" EntityType="Self.ArriveeDocs" />
           <EntitySet Name="Categorie" EntityType="Self.Categorie" />
           <EntitySet Name="Depart" EntityType="Self.Depart" />
           <EntitySet Name="DepartDocs" EntityType="Self.DepartDocs" />
-          <EntitySet Name="Entites" EntityType="Self.Entites" />
           <EntitySet Name="TUsers" EntityType="Self.TUsers" />
           <AssociationSet Name="FK_ARRIVEE_AVOIR_CATEGORI" Association="Self.FK_ARRIVEE_AVOIR_CATEGORI">
             <End Role="Categorie" EntitySet="Categorie" />
-            <End Role="Arrivee" EntitySet="Arrivee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ARRIVEE_ENVOYER_ENTITES" Association="Self.FK_ARRIVEE_ENVOYER_ENTITES">
-            <End Role="Entites" EntitySet="Entites" />
             <End Role="Arrivee" EntitySet="Arrivee" />
           </AssociationSet>
           <AssociationSet Name="FK_ARRIVEE_SAISIR_TUSERS" Association="Self.FK_ARRIVEE_SAISIR_TUSERS">
@@ -455,11 +425,41 @@
             <End Role="Depart" EntitySet="Depart" />
             <End Role="DepartDocs" EntitySet="DepartDocs" />
           </AssociationSet>
-          <AssociationSet Name="Destiner" Association="Self.Destiner">
+          <EntitySet Name="Entites" EntityType="DBGCourriesModel.Entites" />
+          <AssociationSet Name="FK_ARRIVEE_ENVOYER_ENTITES" Association="DBGCourriesModel.FK_ARRIVEE_ENVOYER_ENTITES">
+            <End Role="Entites" EntitySet="Entites" />
+            <End Role="Arrivee" EntitySet="Arrivee" />
+          </AssociationSet>
+          <AssociationSet Name="Destiner" Association="DBGCourriesModel.Destiner">
             <End Role="Entites" EntitySet="Entites" />
             <End Role="Depart" EntitySet="Depart" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="Entites">
+          <Key>
+            <PropertyRef Name="idEntite" />
+          </Key>
+          <Property Name="idEntite" Type="Int32" Nullable="false" />
+          <Property Name="LibEntite" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Arrivee" Relationship="DBGCourriesModel.FK_ARRIVEE_ENVOYER_ENTITES" FromRole="Entites" ToRole="Arrivee" />
+          <NavigationProperty Name="Depart" Relationship="DBGCourriesModel.Destiner" FromRole="Entites" ToRole="Depart" />
+        </EntityType>
+        <Association Name="FK_ARRIVEE_ENVOYER_ENTITES">
+          <End Type="DBGCourriesModel.Entites" Role="Entites" Multiplicity="1" />
+          <End Type="DBGCourriesModel.Arrivee" Role="Arrivee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entites">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="Arrivee">
+              <PropertyRef Name="idEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Destiner">
+          <End Type="DBGCourriesModel.Entites" Role="Entites" Multiplicity="*" />
+          <End Type="DBGCourriesModel.Depart" Role="Depart" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -505,6 +505,7 @@
           <EntitySetMapping Name="Depart">
             <EntityTypeMapping TypeName="DBGCourriesModel.Depart">
               <MappingFragment StoreEntitySet="Depart">
+                <ScalarProperty Name="Remarques" ColumnName="Remarques" />
                 <ScalarProperty Name="idDepart" ColumnName="idDepart" />
                 <ScalarProperty Name="idCateg" ColumnName="idCateg" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
@@ -512,7 +513,6 @@
                 <ScalarProperty Name="NumOrdre" ColumnName="NumOrdre" />
                 <ScalarProperty Name="DateOrdre" ColumnName="DateOrdre" />
                 <ScalarProperty Name="Sujet" ColumnName="Sujet" />
-                <ScalarProperty Name="Ramarques" ColumnName="Ramarques" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -527,14 +527,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Entites">
-            <EntityTypeMapping TypeName="DBGCourriesModel.Entites">
-              <MappingFragment StoreEntitySet="Entites">
-                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
-                <ScalarProperty Name="LibEntite" ColumnName="LibEntite" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TUsers">
             <EntityTypeMapping TypeName="DBGCourriesModel.TUsers">
               <MappingFragment StoreEntitySet="TUsers">
@@ -545,12 +537,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Entites">
+            <EntityTypeMapping TypeName="DBGCourriesModel.Entites">
+              <MappingFragment StoreEntitySet="Entites">
+                <ScalarProperty Name="LibEntite" ColumnName="LibEntite" />
+                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="Destiner" TypeName="DBGCourriesModel.Destiner" StoreEntitySet="Destiner">
-            <EndProperty Name="Entites">
-              <ScalarProperty Name="idEntite" ColumnName="idEntute" />
-            </EndProperty>
             <EndProperty Name="Depart">
               <ScalarProperty Name="idDepart" ColumnName="IdDepart" />
+            </EndProperty>
+            <EndProperty Name="Entites">
+              <ScalarProperty Name="idEntite" ColumnName="idEntite" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

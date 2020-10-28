@@ -9,7 +9,7 @@ using AppGCourries.Reports;
 using AppGCourries.Shared;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace AppGCourries
+namespace AppGCourries.Courries_Arrivees
 {
     public partial class ListArrivee : UserControl
     {

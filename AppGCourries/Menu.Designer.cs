@@ -94,13 +94,14 @@
             this.btnDepart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDepart.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDepart.Image = ((System.Drawing.Image)(resources.GetObject("btnDepart.Image")));
-            this.btnDepart.Location = new System.Drawing.Point(454, 3);
+            this.btnDepart.Location = new System.Drawing.Point(312, 3);
             this.btnDepart.Name = "btnDepart";
             this.btnDepart.Size = new System.Drawing.Size(136, 67);
             this.btnDepart.TabIndex = 1;
             this.btnDepart.Text = "Courrier Départ";
             this.btnDepart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepart.UseVisualStyleBackColor = true;
+            this.btnDepart.Click += new System.EventHandler(this.btnDepart_Click);
             // 
             // btnSuivi
             // 
@@ -109,7 +110,7 @@
             this.btnSuivi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSuivi.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuivi.Image = ((System.Drawing.Image)(resources.GetObject("btnSuivi.Image")));
-            this.btnSuivi.Location = new System.Drawing.Point(312, 3);
+            this.btnSuivi.Location = new System.Drawing.Point(454, 3);
             this.btnSuivi.Name = "btnSuivi";
             this.btnSuivi.Size = new System.Drawing.Size(136, 67);
             this.btnSuivi.TabIndex = 1;

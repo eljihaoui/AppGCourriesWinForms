@@ -30,7 +30,7 @@ namespace AppGCourries.Models
         public virtual DbSet<Categorie> Categorie { get; set; }
         public virtual DbSet<Depart> Depart { get; set; }
         public virtual DbSet<DepartDocs> DepartDocs { get; set; }
-        public virtual DbSet<Entites> Entites { get; set; }
         public virtual DbSet<TUsers> TUsers { get; set; }
+        public virtual DbSet<Entites> Entites { get; set; }
     }
 }

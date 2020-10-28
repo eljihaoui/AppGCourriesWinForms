@@ -1,10 +1,7 @@
 ﻿using AppGCourries.Models;
 using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppGCourries.Shared
 {
@@ -26,6 +23,27 @@ namespace AppGCourries.Shared
                         DateOrdre = p.DateOrdre,
                         NumOrdre = p.NumOrdre,
                         DateCourrier = (DateTime)p.DateCourrier,
+                        Sujet = p.Sujet,
+                        Remarques = p.Remarques
+                    }
+                    ).ToList();
+            }
+            return list;
+        }
+
+        public static List<DepartViewModel> getListDeparts()
+        {
+            List<DepartViewModel> list = new List<DepartViewModel>();
+            using (DBGCourriesContext db = new DBGCourriesContext())
+            {
+                list = db.Depart.Select(
+                    p => new DepartViewModel
+                    {
+                        ID = p.idDepart,
+                        Categorie = p.Categorie.LibCateg,
+                        Annee = p.Annee,
+                        NumOrdre = p.NumOrdre,
+                        DateOrdre = p.DateOrdre,
                         Sujet = p.Sujet,
                         Remarques = p.Remarques
                     }
