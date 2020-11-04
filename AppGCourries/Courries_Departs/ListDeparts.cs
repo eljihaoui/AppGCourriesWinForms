@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppGCourries.Models;
 using AppGCourries.Shared;
-using System.Web.UI.WebControls;
 
 namespace AppGCourries.Courries_Departs
 {
@@ -20,7 +13,7 @@ namespace AppGCourries.Courries_Departs
             InitializeComponent();
         }
 
-        private void ListDeparts_Load(object sender, EventArgs e)
+        public void LoadListDepart()
         {
             List<DepartViewModel> list = SharedData.getListDeparts();
             dgvDeparts.DataSource = list;
@@ -28,10 +21,14 @@ namespace AppGCourries.Courries_Departs
             dgvDeparts.AllowUserToOrderColumns = true;
             dgvDeparts.AllowUserToResizeColumns = true;
         }
+        private void ListDeparts_Load(object sender, EventArgs e)
+        {
+            LoadListDepart();
+        }
 
         private void btnNouveau_Click(object sender, EventArgs e)
         {
-            AddNewDepart frm = new AddNewDepart();
+            AddNewDepart frm = new AddNewDepart(this);
             frm.ShowDialog();
         }
     }

@@ -1,21 +1,21 @@
 ﻿using AppGCourries.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppGCourries.Courries_Departs
 {
     public partial class AddNewDepart : Form
     {
+        private readonly ListDeparts frmListDeparts;
         public AddNewDepart()
         {
             InitializeComponent();
+        }
+        public AddNewDepart(ListDeparts frmListDepartsREF)
+        {
+            InitializeComponent();
+            this.frmListDeparts = frmListDepartsREF;
         }
 
         private void AddNewDepart_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace AppGCourries.Courries_Departs
             }
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void tnQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -59,8 +59,14 @@ namespace AppGCourries.Courries_Departs
                     dep.Entites.Add(entite);
                 }
                 db.SaveChanges();
-
+                this.Close();
+                frmListDeparts.LoadListDepart();
             }
+        }
+
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
