@@ -69,6 +69,8 @@
             this.dgvDeparts.Name = "dgvDeparts";
             this.dgvDeparts.Size = new System.Drawing.Size(836, 293);
             this.dgvDeparts.TabIndex = 3;
+            this.dgvDeparts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeparts_CellContentClick);
+            this.dgvDeparts.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeparts_CellMouseEnter);
             // 
             // pictureBox1
             // 
