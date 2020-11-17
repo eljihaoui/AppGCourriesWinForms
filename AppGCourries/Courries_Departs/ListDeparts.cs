@@ -43,8 +43,9 @@ namespace AppGCourries.Courries_Departs
 
         private void dgvDeparts_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
+
             string colName = dgvDeparts.Columns[e.ColumnIndex].Name;
-            if(colName!= "btnDel")
+            if (colName != "btnDel")
             {
                 dgvDeparts.Cursor = Cursors.Default;
             }
@@ -53,14 +54,17 @@ namespace AppGCourries.Courries_Departs
                 dgvDeparts.Cursor = Cursors.Hand;
 
             }
+
+
         }
 
         private void dgvDeparts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             string colName = dgvDeparts.Columns[e.ColumnIndex].Name;
-            if(colName== "btnDel")
+            if (colName == "btnDel")
             {
-                int idDepart =Convert.ToInt32( dgvDeparts.Rows[e.RowIndex].Cells["ID"].Value);
+                int idDepart = Convert.ToInt32(dgvDeparts.Rows[e.RowIndex].Cells["ID"].Value);
                 DialogResult dr = MessageBox.Show("Voulez vous vraiment supprimer ce courrier ?",
                     "Confirmation de Suppression",
                      MessageBoxButtons.YesNo,
@@ -68,18 +72,20 @@ namespace AppGCourries.Courries_Departs
                     );
                 if (dr == DialogResult.Yes)
                 {
-                    using (DBGCourriesContext db = new DBGCourriesContext()) 
+                    using (DBGCourriesContext db = new DBGCourriesContext())
                     {
                         Depart depart = db.Depart.FirstOrDefault(d => d.idDepart == idDepart);
                         depart.Entites.Clear();// supprimer toutes les entités liées au courrier depart (table destiner)
+
+                        List<DepartDocs> docsToDelete = db.DepartDocs.Where(d => d.idDepart == idDepart).ToList();
+                        db.DepartDocs.RemoveRange(docsToDelete);
+
                         db.Depart.Remove(depart);
                         db.SaveChanges();
                         LoadListDepart();
                     }
                 }
-
             }
-
         }
     }
 }

@@ -138,17 +138,17 @@ namespace AppGCourries.Courries_Arrivees
                 dgvArriveeDocs.Cursor = Cursors.Hand;
             }
         }
-
         private void dgvArriveeDocs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string ColName = dgvArriveeDocs.Columns[e.ColumnIndex].Name;
             if (ColName == "btnDelete")
             {
                 DialogResult dr = MessageBox.Show(
-                    "Voulez Vous supprimer ce fichier ",
+                    "Voulez Vous supprimer ce fichier",
                     "Confirmation de suppression",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning
                     );
+
                 if (dr == DialogResult.Yes)
                 {
                     using (DBGCourriesContext db = new DBGCourriesContext())

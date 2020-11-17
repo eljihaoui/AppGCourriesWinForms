@@ -55,7 +55,6 @@ namespace AppGCourries.Courries_Arrivees
                 db.Arrivee.Add(ar);
                 db.SaveChanges();
 
-
                 ArriveeDocs arDocs = new ArriveeDocs();
                 arDocs.idArrivee = ar.idArrivee;
                 foreach (ListViewItem item in txtPJointes.Items)
@@ -67,6 +66,7 @@ namespace AppGCourries.Courries_Arrivees
                     db.ArriveeDocs.Add(arDocs);
                     db.SaveChanges();
                 }
+
                 this.Close();
                 frmList.loadData();
 
@@ -111,6 +111,11 @@ namespace AppGCourries.Courries_Arrivees
                 txtPJointes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             }
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
 
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.IO;
 
 namespace AppGCourries.Shared
 {
@@ -51,5 +52,17 @@ namespace AppGCourries.Shared
             }
             return list;
         }
+
+        public static byte[] GetBinaryFromFile(string file)
+        {
+            byte[] bytes;
+            using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+            {
+                bytes = new byte[fs.Length];
+                fs.Read(bytes, 0, (int)fs.Length);
+            }
+            return bytes;
+        }
+
     }
 }

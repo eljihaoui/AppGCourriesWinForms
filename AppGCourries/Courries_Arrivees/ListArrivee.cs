@@ -56,7 +56,7 @@ namespace AppGCourries.Courries_Arrivees
         private void ListArrivee_Load(object sender, EventArgs e)
         {
             loadData();
-            //-------------------------------------
+            //-------------------------------------------
             DataGridViewImageColumn btnPrint = new DataGridViewImageColumn();
             btnPrint.Name = "btnPrint";
             btnPrint.HeaderText = "";
@@ -68,13 +68,13 @@ namespace AppGCourries.Courries_Arrivees
             btnEdit.HeaderText = "";
             btnEdit.Image = Properties.Resources.edit2;
             dataGridArrivee.Columns.Add(btnEdit);
-            //-----------------------------------------
+            //-------------------------------------------
             DataGridViewImageColumn btnDelete = new DataGridViewImageColumn();
             btnDelete.Name = "btnDelete";
             btnDelete.HeaderText = "";
             btnDelete.Image = Properties.Resources.delete1;
             dataGridArrivee.Columns.Add(btnDelete);
-            //-----------------------------------------
+            //-------------------------------------------
             dataGridArrivee.RowTemplate.Height = 30;
         }
 
@@ -141,15 +141,15 @@ namespace AppGCourries.Courries_Arrivees
                         }
                         ).Where(x => x.idArrivee == idArriveeCur).ToList();
 
-                    List <ArriveeDetailViewModel> listSupReport = new List<ArriveeDetailViewModel>();
+                    List<ArriveeDetailViewModel> listSupReport = new List<ArriveeDetailViewModel>();
                     listSupReport = db.Arrivee.FirstOrDefault(a => a.idArrivee == idArriveeCur).ArriveeDocs.Select(
-                        p=>new ArriveeDetailViewModel
+                        p => new ArriveeDetailViewModel
                         {
-                            idArrivee=p.idArrivee,
-                            idArriveeDocs=p.idArriveeDocs,
-                            typeDoc=p.TypeDocArrivee,
+                            idArrivee = p.idArrivee,
+                            idArriveeDocs = p.idArriveeDocs,
+                            typeDoc = p.TypeDocArrivee,
                             filename = p.FileName,
-                            sizeFile= Math.Round((p.ContenuFileArrivee.Length/1024f),2) + " KB"
+                            sizeFile = Math.Round((p.ContenuFileArrivee.Length / 1024f), 2) + " KB"
                         }
                         ).ToList();
 
@@ -192,15 +192,18 @@ namespace AppGCourries.Courries_Arrivees
 
         private void dataGridArrivee_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
-            if (ColName != "btnEdit" && ColName != "btnDelete" && ColName != "btnPrint")
-            {
-                dataGridArrivee.Cursor = Cursors.Default;
-            }
-            else
-            {
-                dataGridArrivee.Cursor = Cursors.Hand;
-            }
+
+                string ColName = dataGridArrivee.Columns[e.ColumnIndex].Name;
+                if (ColName != "btnEdit" && ColName != "btnDelete" && ColName != "btnPrint")
+                {
+                    dataGridArrivee.Cursor = Cursors.Default;
+                }
+                else
+                {
+                    dataGridArrivee.Cursor = Cursors.Hand;
+                }
+            
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -265,7 +268,7 @@ namespace AppGCourries.Courries_Arrivees
             for (int i = 0; i < listCourries.Count; i++)
             {
                 arVm = listCourries.ElementAt(i);
-                for (int j= 0; j < nbcol; j++)
+                for (int j = 0; j < nbcol; j++)
                 {
                     excelSheet.Cells[i + 2, j + 1] = arVm.GetType().GetProperty(cols[j].Name).GetValue(arVm, null);
                 }

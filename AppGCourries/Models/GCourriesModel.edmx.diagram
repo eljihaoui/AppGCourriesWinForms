@@ -6,18 +6,18 @@
     <edmx:Diagrams>
       <Diagram DiagramId="93f421d42b644e1cb230146ce9f4f157" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="DBGCourriesModel.Arrivee" Width="1.5" PointX="3.5" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGCourriesModel.ArriveeDocs" Width="2" PointX="8.125" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGCourriesModel.Categorie" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGCourriesModel.Depart" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGCourriesModel.DepartDocs" Width="1.5" PointX="8.375" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGCourriesModel.TUsers" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGCourriesModel.ArriveeDocs" Width="1.75" PointX="7.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGCourriesModel.Categorie" Width="1.5" PointX="0.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGCourriesModel.Depart" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGCourriesModel.DepartDocs" Width="1.625" PointX="7.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGCourriesModel.TUsers" Width="1.5" PointX="0.875" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="DBGCourriesModel.FK_ARRIVEE_AVOIR_CATEGORI" ManuallyRouted="false" />
         <AssociationConnector Association="DBGCourriesModel.FK_ARRIVEE_SAISIR_TUSERS" ManuallyRouted="false" />
         <AssociationConnector Association="DBGCourriesModel.FK_ARRIVEED_AVOIR_PJ_ARRIVEE" ManuallyRouted="false" />
         <AssociationConnector Association="DBGCourriesModel.FK_DEPART_CLASSER_CATEGORI" ManuallyRouted="false" />
         <AssociationConnector Association="DBGCourriesModel.FK_DEPART_ENREGISTR_TUSERS" ManuallyRouted="false" />
         <AssociationConnector Association="DBGCourriesModel.FK_DEPARTDO_AVOIR_DOC_DEPART" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBGCourriesModel.Entites" Width="1.5" PointX="2.25" PointY="0.875" />
+        <EntityTypeShape EntityType="DBGCourriesModel.Entites" Width="1.5" PointX="1.25" PointY="0.875" />
         <AssociationConnector Association="DBGCourriesModel.FK_ARRIVEE_ENVOYER_ENTITES" />
         <AssociationConnector Association="DBGCourriesModel.Destiner" />
         </Diagram>
