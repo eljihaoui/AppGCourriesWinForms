@@ -77,6 +77,12 @@
     <Compile Include="Courries_Arrivees\frmArriveeAdd.Designer.cs">
       <DependentUpon>frmArriveeAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Courries_Departs\EditDepart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courries_Departs\EditDepart.Designer.cs">
+      <DependentUpon>EditDepart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Courries_Departs\AddNewDepart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Courries_Arrivees\frmArriveeAdd.resx">
       <DependentUpon>frmArriveeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courries_Departs\EditDepart.resx">
+      <DependentUpon>EditDepart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Courries_Departs\AddNewDepart.resx">
       <DependentUpon>AddNewDepart.cs</DependentUpon>

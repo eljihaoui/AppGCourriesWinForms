@@ -33,6 +33,13 @@ namespace AppGCourries.Courries_Departs
             dgvDeparts.Columns.Add(btnDEL);
             dgvDeparts.RowTemplate.Height = 30;
 
+            DataGridViewImageColumn btnEdit = new DataGridViewImageColumn();
+            btnEdit.Name = "btnEdit";
+            btnEdit.HeaderText = "";
+            btnEdit.Image = Properties.Resources.edit2;
+            dgvDeparts.Columns.Add(btnEdit);
+            dgvDeparts.RowTemplate.Height = 30;
+
         }
 
         private void btnNouveau_Click(object sender, EventArgs e)
@@ -45,14 +52,13 @@ namespace AppGCourries.Courries_Departs
         {
 
             string colName = dgvDeparts.Columns[e.ColumnIndex].Name;
-            if (colName != "btnDel")
+            if (colName == "btnDel" || colName == "btnEdit")
             {
-                dgvDeparts.Cursor = Cursors.Default;
+                dgvDeparts.Cursor = Cursors.Hand;
             }
             else
             {
-                dgvDeparts.Cursor = Cursors.Hand;
-
+                dgvDeparts.Cursor = Cursors.Default;
             }
 
 
@@ -61,10 +67,11 @@ namespace AppGCourries.Courries_Departs
         private void dgvDeparts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string colName = dgvDeparts.Columns[e.ColumnIndex].Name;
+            string colName = dgvDeparts.Columns[e.ColumnIndex].Name;  
+            int idDepart = Convert.ToInt32(dgvDeparts.Rows[e.RowIndex].Cells["ID"].Value);
+
             if (colName == "btnDel")
             {
-                int idDepart = Convert.ToInt32(dgvDeparts.Rows[e.RowIndex].Cells["ID"].Value);
                 DialogResult dr = MessageBox.Show("Voulez vous vraiment supprimer ce courrier ?",
                     "Confirmation de Suppression",
                      MessageBoxButtons.YesNo,
@@ -85,6 +92,12 @@ namespace AppGCourries.Courries_Departs
                         LoadListDepart();
                     }
                 }
+            }
+
+            if (colName == "btnEdit")
+            {
+                EditDepart frmEdit = new EditDepart(idDepart, this);
+                frmEdit.ShowDialog();
             }
         }
     }
