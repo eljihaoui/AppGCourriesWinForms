@@ -44,14 +44,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtTitre = new System.Windows.Forms.Label();
             this.btnQuitter = new System.Windows.Forms.PictureBox();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.txtPJointes = new System.Windows.Forms.ListView();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dgvDepartDocs = new System.Windows.Forms.DataGridView();
+            this.btnUploadMoreFiles = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepartDocs)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -68,7 +67,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(33, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 318);
+            this.groupBox1.Size = new System.Drawing.Size(505, 318);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -76,7 +75,7 @@
             // 
             this.txtEntite.CheckOnClick = true;
             this.txtEntite.FormattingEnabled = true;
-            this.txtEntite.Location = new System.Drawing.Point(297, 90);
+            this.txtEntite.Location = new System.Drawing.Point(248, 92);
             this.txtEntite.Name = "txtEntite";
             this.txtEntite.Size = new System.Drawing.Size(250, 184);
             this.txtEntite.TabIndex = 19;
@@ -101,7 +100,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(297, 68);
+            this.label7.Location = new System.Drawing.Point(248, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 17);
             this.label7.TabIndex = 15;
@@ -110,7 +109,7 @@
             // txtCateg
             // 
             this.txtCateg.FormattingEnabled = true;
-            this.txtCateg.Location = new System.Drawing.Point(298, 31);
+            this.txtCateg.Location = new System.Drawing.Point(249, 33);
             this.txtCateg.Name = "txtCateg";
             this.txtCateg.Size = new System.Drawing.Size(250, 25);
             this.txtCateg.TabIndex = 14;
@@ -118,7 +117,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(294, 8);
+            this.label6.Location = new System.Drawing.Point(245, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 17);
             this.label6.TabIndex = 13;
@@ -173,7 +172,6 @@
             this.btnEnregistrer.TabIndex = 13;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.UseVisualStyleBackColor = false;
-            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // pictureBox1
             // 
@@ -199,7 +197,7 @@
             // 
             this.btnQuitter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQuitter.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitter.Image")));
-            this.btnQuitter.Location = new System.Drawing.Point(865, 4);
+            this.btnQuitter.Location = new System.Drawing.Point(895, 4);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(34, 28);
             this.btnQuitter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -207,61 +205,54 @@
             this.btnQuitter.TabStop = false;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
-            // btnUpload
+            // dgvDepartDocs
             // 
-            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpload.FlatAppearance.BorderSize = 0;
-            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
-            this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpload.Location = new System.Drawing.Point(612, 353);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(187, 40);
-            this.btnUpload.TabIndex = 16;
-            this.btnUpload.Text = "Parcourir...";
-            this.btnUpload.UseVisualStyleBackColor = false;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.dgvDepartDocs.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvDepartDocs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDepartDocs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDepartDocs.Location = new System.Drawing.Point(544, 42);
+            this.dgvDepartDocs.Name = "dgvDepartDocs";
+            this.dgvDepartDocs.RowHeadersWidth = 62;
+            this.dgvDepartDocs.RowTemplate.Height = 35;
+            this.dgvDepartDocs.Size = new System.Drawing.Size(385, 308);
+            this.dgvDepartDocs.TabIndex = 15;
+            this.dgvDepartDocs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDepartDocs_CellContentClick);
+            this.dgvDepartDocs.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDepartDocs_CellMouseEnter);
             // 
-            // txtPJointes
+            // btnUploadMoreFiles
             // 
-            this.txtPJointes.HideSelection = false;
-            this.txtPJointes.Location = new System.Drawing.Point(612, 45);
-            this.txtPJointes.Name = "txtPJointes";
-            this.txtPJointes.Size = new System.Drawing.Size(287, 302);
-            this.txtPJointes.TabIndex = 15;
-            this.txtPJointes.UseCompatibleStateImageBehavior = false;
-            this.txtPJointes.View = System.Windows.Forms.View.Details;
+            this.btnUploadMoreFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnUploadMoreFiles.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUploadMoreFiles.FlatAppearance.BorderSize = 0;
+            this.btnUploadMoreFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadMoreFiles.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadMoreFiles.Image")));
+            this.btnUploadMoreFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadMoreFiles.Location = new System.Drawing.Point(699, 10);
+            this.btnUploadMoreFiles.Name = "btnUploadMoreFiles";
+            this.btnUploadMoreFiles.Size = new System.Drawing.Size(140, 26);
+            this.btnUploadMoreFiles.TabIndex = 17;
+            this.btnUploadMoreFiles.Text = "     Parcourrir (+)";
+            this.btnUploadMoreFiles.UseVisualStyleBackColor = false;
+            this.btnUploadMoreFiles.Click += new System.EventHandler(this.btnUploadMoreFiles_Click);
             // 
-            // pictureBox2
+            // label1
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(612, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 27);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 18;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(646, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(172, 17);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Pièces Jointes du Courrier";
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(550, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 17);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Les pièces Jointes :";
             // 
             // EditDepart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 409);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnUpload);
-            this.Controls.Add(this.txtPJointes);
+            this.ClientSize = new System.Drawing.Size(941, 409);
+            this.Controls.Add(this.dgvDepartDocs);
+            this.Controls.Add(this.btnUploadMoreFiles);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnEnregistrer);
             this.Controls.Add(this.pictureBox1);
@@ -278,7 +269,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepartDocs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,9 +292,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label txtTitre;
         private System.Windows.Forms.PictureBox btnQuitter;
-        private System.Windows.Forms.Button btnUpload;
-        private System.Windows.Forms.ListView txtPJointes;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dgvDepartDocs;
+        private System.Windows.Forms.Button btnUploadMoreFiles;
+        private System.Windows.Forms.Label label1;
     }
 }
